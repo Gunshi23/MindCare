@@ -1,0 +1,311 @@
+:root {
+            /* Light Mode Colors */
+            --bg-color-light: #f4f7f6;
+            --card-bg-light: #ffffff;
+            --text-color-light: #333333;
+            --header-bg-light: #ffffff;
+            --secondary-text-light: #FDAAAA;
+            --border-color-light: #FDAAAA;
+            --accent-color-light: #FDAAAA;
+            --button-bg-light: #2c3e50;
+            --button-text-light: #ffffff;
+        }
+
+        body.dark-mode {
+            /* Dark Mode Colors */
+            --bg-color-light: #1a202c;
+            --card-bg-light: #2d3748;
+            --text-color-light: #bb86fc;
+            --header-bg-light: #2d3748;
+            --secondary-text-light: #bb86fc;
+            --border-color-light: #4a5568;
+            --accent-color-light: #bb86fc;
+            --button-bg-light: #bb86fc;
+            --button-text-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--header-bg-light);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .logo {
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--accent-color-light);
+        }
+
+        .header .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        #logout-button {
+            padding: 10px 16px;
+            cursor: pointer;
+            border: 1px solid var(--border-color-light);
+            border-radius: 8px;
+            background-color: transparent;
+            color: var(--text-color-light);
+            transition: all 0.3s ease;
+        }
+
+        #logout-button:hover {
+            background-color: var(--accent-color-light);
+            color: white;
+            border-color: var(--accent-color-light);
+        }
+
+        #mode-toggle {
+            padding: 8px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--button-bg-light);
+            color: var(--button-text-light);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        #mode-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        body.dark-mode #logout-button {
+            border-color: var(--border-color-light);
+            color: var(--text-color-light);
+        }
+
+        .header .user-profile .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--accent-color-light), #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .welcome-section {
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .welcome-section p {
+            font-size: 16px;
+            color: var(--secondary-text-light);
+        }
+
+        .daily-affirmation {
+            background-color: var(--card-bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .daily-affirmation span {
+            font-style: italic;
+            color: var(--secondary-text-light);
+        }
+
+        .grid-container {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 2fr 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg-light);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .quick-actions-grid {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color-light);
+            flex: 1 1 120px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color-light);
+        }
+        
+        .action-item p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--secondary-text-light);
+        }
+        
+        .action-item p:first-child {
+            font-weight: bold;
+            color: var(--text-color-light);
+            margin-bottom: 5px;
+        }
+
+        .action-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--accent-color-light);
+        }
+
+        .mood-tracker .chart-container {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 10px;
+            gap: 10px;
+        }
+
+        .mood-bar {
+            width: 20px;
+            background-color: var(--accent-color-light);
+            border-radius: 5px 5px 0 0;
+            transition: height 0.5s ease-out;
+        }
+        
+        .coping-activity .activity-card {
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color-light);
+            margin-bottom: 15px;
+        }
+
+        .coping-activity button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--button-bg-light);
+            color: var(--button-text-light);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .coping-activity button:hover {
+            background-color: var(--accent-color-light);
+        }
+        
+        .recent-activity .activity-item,
+        .upcoming-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .activity-icon, .upcoming-icon {
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #f0f4f7;
+        }
+
+        body.dark-mode .activity-icon,
+        body.dark-mode .upcoming-icon {
+            background-color: var(--border-color-light);
+        }
+        
+        .recent-activity p {
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .recent-activity .time {
+            font-size: 12px;
+            color: var(--secondary-text-light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            font-size: 14px;
+        }
+
+        .stats-grid p {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .user-info-display {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-family: monospace;
+        }

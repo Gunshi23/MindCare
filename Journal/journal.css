@@ -1,0 +1,96 @@
+body {
+            font-family: 'Quicksand', sans-serif;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><path fill="%23e1e6f0" d="M1 3h1v1H1V3zm2-2h1v1H3V1z"></path></svg>'), linear-gradient(-45deg, #a8d0ff, #f9c2d1, #ffeb95, #c3e2ff);
+            background-size: 400% 400%;
+        }
+        .title-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        .btn-gradient {
+            background-image: linear-gradient(to right, #f28b9f 0%, #87a7ff 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.4);
+        }
+        .input-glow:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(181, 146, 255, 0.5);
+        }
+        .mood-btn {
+            transition: transform 0.2s, filter 0.2s;
+            filter: grayscale(100%);
+        }
+        .mood-btn.selected {
+            transform: scale(1.2) rotate(-5deg);
+            filter: grayscale(0%);
+        }
+        .mood-btn:hover {
+            transform: scale(1.2);
+            filter: grayscale(0%);
+        }
+        .frosted-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        /* New pastel colors for each journal section */
+        .gratitude-card {
+            background-color: rgba(230, 230, 250, 0.85); /* Light pastel purple */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .looking-forward-card {
+            background-color: rgba(255, 220, 220, 0.85); /* Light pastel red */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .positive-moments-card {
+            background-color: rgba(220, 255, 230, 0.85); /* Light pastel green */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .personal-strengths-card {
+            background-color: rgba(255, 255, 200, 0.85); /* Light pastel yellow */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .happy-place-card {
+            background-color: rgba(220, 240, 255, 0.85); /* Light pastel blue */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .accomplishments-card {
+            background-color: rgba(255, 200, 255, 0.85); /* Light pastel magenta */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .support-system-card {
+            background-color: rgba(200, 255, 255, 0.85); /* Light pastel cyan */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .favorite-memory-card {
+            background-color: rgba(255, 230, 200, 0.85); /* Light pastel orange */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .image-upload-card {
+            background-color: rgba(240, 240, 240, 0.85); /* Light pastel gray */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .daily-prompt-card {
+            background-image: linear-gradient(to right, #FCE4EC 0%, #F8C8DC 100%); /* Lighter pastel pink gradient */
+        }
+        .word-cloud-card {
+            background-color: rgba(255, 240, 255, 0.85); /* Light pastel pink */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .word-cloud-canvas {
+            width: 100%;
+            height: 200px;
+            max-width: 100%;
+        }

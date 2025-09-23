@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Doodling Pad</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="" href="doodle-pad.css">
+</head>
+<body>
+    <div class="doodling-container">
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <button id="undo-btn" class="tool-button" title="Undo">
+                    <span class="material-icons">undo</span>
+                </button>
+                <button id="redo-btn" class="tool-button" title="Redo">
+                    <span class="material-icons">redo</span>
+                </button>
+                <button id="clear-btn" class="tool-button" title="Clear Canvas">
+                    <span class="material-icons">delete</span>
+                </button>
+            </div>
+            <div id="color-picker-wrapper">
+                <div id="color-indicator"></div>
+                <input type="color" id="color-picker" value="#000000">
+            </div>
+            <div class="slider-container">
+                <input type="range" id="brush-size" min="1" max="50" value="5">
+            </div>
+        </div>
+        <div class="canvas-area">
+            <div class="canvas-header">
+                <h2>My Doodle</h2>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="tool-button" title="Toggle Dark/Light Mode">
+                        <span class="material-icons">brightness_2</span>
+                    </button>
+                    <button id="download-btn" title="Download Doodle">
+                        <span class="material-icons">download</span> Download
+                    </button>
+                </div>
+            </div>
+            <canvas id="doodleCanvas"></canvas>
+        </div>
+        <div class="inspiration-section">
+            <h3>Daily Doodle Inspiration</h3>
+            <p id="inspiration-text"></p>
+        </div>
+    </div>
+
+    <script src="doodle-pad.js">
+       
+    </script>
+</body>
+</html>

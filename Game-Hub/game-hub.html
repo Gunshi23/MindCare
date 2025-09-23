@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games & Distraction Hub</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="" href="game-hub.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="material-icons">mood</span>
+                <h1>Games & Distraction Hub</h1>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">
+                <span class="material-icons">brightness_2</span>
+            </button>
+        </header>
+
+        <main>
+            <h2>Choose a game to take a break.</h2>
+            <div class="card-grid">
+                <!-- Changed href to prevent navigation and added onclick to show a message -->
+                <a href="/Breathing-Animation/breathing-animation.html" class="card" onclick="openGame('Breathing Animation')">
+                    <div class="card-icon"><span class="material-icons">self_improvement</span></div>
+                    <h3>Breathing Animation</h3>
+                    <p>4-7-8 breathing technique with a visual guide.</p>
+                </a>
+                
+                <a href="/Doodle-Pad/doodle-pad.html" class="card" onclick="openGame('Digital Doodle Pad')">
+                    <div class="card-icon"><span class="material-icons">brush</span></div>
+                    <h3>Digital Doodle Pad</h3>
+                    <p>Express yourself through free-form drawing.</p>
+                </a>
+                
+                <a href="/Word-Search/word-search.html" class="card" onclick="openGame('Word Search')">
+                    <div class="card-icon"><span class="material-icons">search</span></div>
+                    <h3>Word Search</h3>
+                    <p>Find hidden wellness words to relax your mind.</p>
+                </a>
+                
+                <a href="/Memory-Match/memory-match.html" class="card" onclick="openGame('Memory Match')">
+                    <div class="card-icon"><span class="material-icons">memory</span></div>
+                    <h3>Memory Match</h3>
+                    <p>Match pairs of positive affirmations.</p>
+                </a>
+                
+                <a href="/2048/2048.html" class="card" onclick="openGame('2048')">
+                    <div class="card-icon"><span class="material-icons">opacity</span></div>
+                    <h3>2048</h3>
+                    <p>combine identical tiles by sliding them across the board until you create a single tile with the value 2048</p>
+                </a>
+                
+                <a href="/Sound-Mixer/sound-mixer.html" class="card" onclick="openGame('Sound Mixer')">
+                    <div class="card-icon"><span class="material-icons">spa</span></div>
+                    <h3>Sound Mixer</h3>
+                    <p>Create a personalized soundscape for focus or sleep.</p>
+                </a>
+
+                <a href="/Bubble-Wrap/bubble-wrap.html" class="card" onclick="openGame('Bubble Wrap')">
+                    <div class="card-icon"><span class="material-icons">eco</span></div>
+                    <h3>Zen Garden</h3>
+                    <p>Create peaceful, glowing visuals with a single tap.</p>
+                </a>
+
+                <a href="/Falling-Sand/falling-sand.html" class="card" onclick="openGame('Falling Sand')">
+                    <div class="card-icon"><span class="material-icons">grain</span></div>
+                    <h3>Falling Sand</h3>
+                    <p>Watch and play with different materials in a physics sandbox.</p>
+                </a>
+            </div>
+        </main>
+    </div>
+    <script src="js/game-hub.js">
+      
+    </script>
+</body>
+</html>

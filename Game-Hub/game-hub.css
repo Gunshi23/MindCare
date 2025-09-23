@@ -1,0 +1,169 @@
+ :root {
+            --bg-color-light: #f4f7f9;
+            --card-bg-light: #ffffff;
+            --text-color-light: #333333;
+            --secondary-text-light: #666666;
+            --border-color-light: #e0e0e0;
+            --primary-color: #6a4fe6;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow-hover: rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode {
+            --bg-color-light: #1a1a2e;
+            --card-bg-light: #16213e;
+            --text-color-light: #e0e0e0;
+            --secondary-text-light: #b0b0b0;
+            --border-color-light: #3a3a5a;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --shadow-hover: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 15px; /* Added padding for smaller screens */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color-light);
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo .material-icons {
+            font-size: 32px;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: var(--card-bg-light);
+            border: 1px solid var(--border-color-light);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 20px;
+            box-shadow: 0 2px 4px var(--shadow);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-hover);
+        }
+
+        .theme-toggle .material-icons {
+            font-size: 20px;
+            color: var(--text-color-light);
+        }
+
+        h1 {
+            font-size: clamp(1.5em, 5vw, 2.5em); /* Responsive font size */
+            margin: 0;
+        }
+
+        h2 {
+            font-size: clamp(1.2em, 4vw, 2em);
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: var(--text-color-light);
+            text-align: center;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Use auto-fit for fluid layout */
+            gap: 25px;
+        }
+        
+        .card {
+            background-color: var(--card-bg-light);
+            border: 1px solid var(--border-color-light);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px var(--shadow-hover);
+        }
+
+        .card .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: var(--secondary-text-light);
+            margin: 5px 0 0;
+        }
+
+        /* Modal styling for game messages */
+        .modal {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: var(--card-bg-light);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 80%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .modal h3 {
+            margin: 0;
+        }
+        .modal button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+        }

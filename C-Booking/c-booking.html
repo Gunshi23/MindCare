@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MindCare Confidential Booking</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <link rel="stylesheet" href="c-booking.css">
+</head>
+<body>
+  <!-- Theme toggle -->
+  <div class="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="themeSwitcher">
+      <span class="slider">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+      </span>
+    </label>
+  </div>
+
+  <!-- Main Heading -->
+  <div class="main-heading">MindCare Confidential Booking System</div>
+
+  <!-- Form container -->
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form action="#">
+        <h1>Book a New Session</h1>
+        <div class="social-container">
+          <a href="#" class="social" id="googleLink" target="_blank" title="Book via Google Calendar"><i class="fab fa-google"></i></a>
+          <a href="#" class="social" id="outlookLink" target="_blank" title="Book via Outlook"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social" id="appleLink" download="MindCareBooking.ics" title="Book via Apple Calendar"><i class="fab fa-apple"></i></a>
+        </div>
+        <span>or use your email for booking</span>
+        <input type="text" placeholder="Full Name" id="fullName"/>
+        <input type="email" placeholder="Email" id="email"/>
+        <input type="datetime-local" id="bookingDateTime"/>
+        <button type="button" id="bookSessionBtn">Book Session</button>
+      </form>
+    </div>
+
+    <div class="form-container sign-in-container">
+      <form action="#">
+        <h1>Manage Booking</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-google"></i></a>
+          <a href="#" class="social"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social"><i class="fab fa-apple"></i></a>
+        </div>
+        <span>or use your account</span>
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Booking ID / Password" />
+        <a href="#">Forgot your booking details?</a>
+        <button>Access Booking</button>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>Login to manage your confidential MindCare bookings</p>
+          <button class="ghost" id="signIn">Manage Booking</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Book your confidential session securely with MindCare</p>
+          <button class="ghost" id="signUp">Book Session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="c-booking.js"></script>
+    
+</body>
+</html>

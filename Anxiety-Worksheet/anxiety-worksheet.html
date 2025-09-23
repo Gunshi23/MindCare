@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxiety Tracking Worksheet</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="" href="anxiety-worksheet.css">
+</head>
+<body>
+    <div class="worksheet-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>Anxiety Tracking Worksheet</h1>
+        <p>A simple worksheet to track triggers, symptoms, and coping mechanisms.</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="step-content active" id="step1">
+            <h3>Step 1: Identify the Trigger</h3>
+            <label for="trigger">What happened before you felt anxious?</label>
+            <textarea id="trigger" placeholder="Describe the event, situation, or thought that triggered your anxiety."></textarea>
+        </div>
+
+        <div class="step-content" id="step2">
+            <h3>Step 2: Track Symptoms</h3>
+            <label for="symptoms">What did you feel and experience in your body?</label>
+            <textarea id="symptoms" placeholder="e.g., 'My heart was racing, my hands were sweating, I felt dizzy.'"></textarea>
+            
+            <label for="thoughts">What thoughts were going through your mind?</label>
+            <textarea id="thoughts" placeholder="e.g., 'I am going to fail. Everyone is looking at me.'"></textarea>
+        </div>
+
+        <div class="step-content" id="step3">
+            <h3>Step 3: Coping Mechanisms</h3>
+            <label for="copingStrategies">What did you do to cope with these feelings?</label>
+            <textarea id="copingStrategies" placeholder="e.g., 'I took a few deep breaths. I stepped outside for a minute.'"></textarea>
+        </div>
+
+        <div class="step-content" id="step4">
+            <div class="worksheet-summary">
+                <div class="summary-card">
+                    <h3>Trigger</h3>
+                    <p id="summaryTrigger"></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Symptoms & Thoughts</h3>
+                    <p id="summarySymptoms"></p>
+                    <p id="summaryThoughts"></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Coping Strategies</h3>
+                    <p id="summaryCoping"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-btns">
+            <button class="btn btn-secondary" id="backBtn" style="display: none;">Back</button>
+            <button class="btn btn-primary" id="nextBtn">Next</button>
+            <button class="btn btn-primary" id="startOverBtn" style="display: none;">Start Over</button>
+            <button class="btn btn-primary" id="downloadBtn" style="display: none;">
+                <span class="material-icons">download</span> Download
+            </button>
+        </div>
+    </div>
+
+    <script src="anxiety-worksheet.js">
+        
+    </script>
+</body>
+</html>

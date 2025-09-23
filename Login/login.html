@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCare</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body class="light-mode">
+    <header class="header">
+        <div class="logo">MindCare</div>
+        <div class="header-right">
+            <button id="mode-toggle" title="Toggle Dark/Light Mode">
+                <span id="mode-icon">☀️</span>
+            </button>
+            <div class="crisis-support">
+                <button type="submit"><a href="crisis.html">Crisis Support</a></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Status Messages -->
+        <div id="status-container"></div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="form-container active">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your MindCare account</p>
+            <form>
+                <div class="input-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" placeholder="student@university.edu" required>
+                </div>
+                <br>
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <br>
+                <div class="options-group">
+                
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <a href="#" id="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" id="sign-in-button">Sign In</button>
+            </form>
+            <p class="form-switch">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signup-form" class="form-container">
+            <h2>Create Account</h2>
+            <p>Join MindCare to start tracking your mental wellness</p>
+            <form>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-role">Role</label>
+                        <select id="signup-role">
+                            <option value="patient">Patient</option>
+                            <option value="therapist">Therapist</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <br>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create password (6+ chars)" required>
+
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="Confirm password" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="signup-college">College/University</label>
+                        <input type="text" id="signup-college" placeholder="Your institution" required>
+                    </div>
+                    <br>
+                    <div class="input-group">
+
+                        <label for="signup-year">Year</label>
+                        <select id="signup-year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                            <option value="grad">Graduate</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="signup-dept">Department</label>
+                    <input type="text" id="signup-dept" placeholder="Your department/major" required>
+                </div>
+                <br>
+                <button type="submit" id="create-account-button">Create Account</button>
+            </form>
+            <p class="form-switch">Already have an account? <a href="#" id="show-login">Sign in</a></p>
+        </div>
+    </div>
+    
+    <script src="script.js">
+       
+    </script>
+</body>
+</html>

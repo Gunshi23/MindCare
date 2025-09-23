@@ -1,0 +1,31 @@
+ body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        .light {
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+        .dark {
+            background-color: #121212;
+            color: #e2e8f0;
+        }
+        .poem-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .modal-overlay {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease-in-out;
+        }
+        .modal-overlay.open {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }

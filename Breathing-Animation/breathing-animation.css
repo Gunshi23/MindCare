@@ -1,0 +1,308 @@
+:root {
+            --bg-color: #fbf8f0;
+            --card-bg: #ffffff;
+            --text-color: #4a4a4a;
+            --secondary-text: #666666;
+            --primary-color: #6a4fe6;
+            --accent-color: #4CAF50;
+            --breathe-circle-color: #2196F3;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-color: #1c1e2b;
+            --card-bg: #16213e;
+            --text-color: #f5f5f5;
+            --secondary-text: #b0b0b0;
+            --primary-color: #8c7ae6;
+            --breathe-circle-color: #61dafb;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Basic Page Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .main-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1100px;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .main-layout {
+                flex-direction: row;
+                gap: 30px;
+            }
+        }
+
+        .breathing-container, .daily-content {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            padding: 30px;
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        /* Headings and Paragraphs */
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: clamp(24px, 5vw, 36px);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: clamp(20px, 4vw, 30px);
+        }
+
+        p {
+            color: var(--secondary-text);
+            margin-bottom: 25px;
+            line-height: 1.5;
+            font-size: clamp(14px, 3vw, 16px);
+        }
+        
+        /* Daily Content Section */
+        .daily-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+        
+        .daily-item {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .daily-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .daily-item h3 {
+            color: var(--text-color);
+            margin-bottom: 5px;
+            font-size: clamp(18px, 3.5vw, 24px);
+        }
+        
+        .daily-item p {
+            color: var(--secondary-text);
+            margin: 0;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        
+        .daily-item textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--secondary-text);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            resize: vertical;
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            transition: background-color 0.3s, color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .daily-item textarea::placeholder {
+            color: var(--secondary-text);
+            opacity: 0.7;
+        }
+
+        body.dark-mode .daily-item textarea {
+            border-color: #3a3a5a;
+        }
+
+        /* Breathing Circle Animation */
+        .breathing-circle-wrapper {
+            position: relative;
+            width: clamp(150px, 40vw, 300px);
+            aspect-ratio: 1 / 1;
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .breathing-circle {
+            width: 100%;
+            height: 100%;
+            background-color: var(--breathe-circle-color);
+            border-radius: 50%;
+            opacity: 0.8;
+            transform: scale(1);
+            transition: transform 4s ease-in-out;
+            box-shadow: 0 0 20px rgba(33, 150, 243, 0.5);
+        }
+        
+        body.dark-mode .breathing-circle {
+            box-shadow: 0 0 20px rgba(97, 218, 251, 0.5);
+        }
+
+        .breathing-text {
+            position: absolute;
+            font-size: clamp(16px, 4vw, 24px);
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+            user-select: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Start/Stop Button */
+        .btn-start {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.2s;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            background-color: #5a3ce0;
+        }
+
+        /* Rules Section */
+        .rules {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 1px solid var(--secondary-text);
+            padding-top: 20px;
+            width: 100%;
+        }
+
+        .rules h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .rules ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            color: var(--secondary-text);
+        }
+
+        .rules li .material-icons {
+            margin-right: 10px;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        /* Other Resources Section */
+        .other-resources {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 1px solid var(--secondary-text);
+            padding-top: 20px;
+            width: 100%;
+        }
+        
+        .other-resources h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .other-resources ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .other-resources li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+        }
+        
+        .other-resources a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        
+        .other-resources a:hover {
+            color: #5a3ce0;
+        }
+        
+        .other-resources .material-icons {
+            margin-right: 10px;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        /* Dark/Light Mode Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--secondary-text);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle .material-icons {
+            font-size: 20px;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        /* Animation classes toggled by JavaScript */
+        .breathing-circle.breathe-in {
+            transform: scale(1.3);
+            transition-duration: 4s;
+        }
+        .breathing-circle.hold {
+            transform: scale(1.3);
+            transition-duration: 7s;
+        }
+        .breathing-circle.breathe-out {
+            transform: scale(1);
+            transition-duration: 8s;
+        }

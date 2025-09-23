@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCare Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="journal.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.1.0/wordcloud2.js"></script>
+    
+</head>
+<body class="flex flex-col min-h-screen items-center p-4 sm:p-8">
+    <!-- Main Content Container -->
+    <div id="main-card" class="frosted-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center">
+        <h1 class="text-5xl font-bold text-blue-900 mb-2 title-font">MindCare</h1>
+        <p class="text-2xl font-medium text-gray-600 mb-6 title-font">My Journal</p>
+        <div id="user-id" class="text-xs text-gray-400 font-mono mb-4"></div>
+          <textarea id="journal-entry-text" rows="10" placeholder="Start writing your thoughts here..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-blue-500 input-glow transition-colors"></textarea>
+        
+        <p id="last-updated" class="text-sm text-gray-500 mb-4"></p>
+
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full">
+            <button id="save-button" class="btn-gradient text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full sm:w-1/2">
+                Save Daily Entry
+            </button>
+            <button id="view-past-entries-button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full sm:w-1/2 transition-colors">
+                View Past Entries
+            </button>
+        </div>
+    </div>
+    
+    <!-- Word Cloud Section -->
+    <div id="word-cloud-card" class="word-cloud-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <div class="flex justify-between items-center w-full mb-4">
+            <h2 class="text-3xl font-bold text-pink-900 title-font">Word Cloud</h2>
+            <button id="view-full-word-cloud" class="text-blue-600 hover:text-blue-800 font-medium">View Full</button>
+        </div>
+        <canvas id="word-cloud-canvas" class="word-cloud-canvas border border-gray-300 rounded-xl"></canvas>
+    </div>
+
+    <!-- Gratitude Section -->
+    <div id="gratitude-card" class="gratitude-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-purple-900 mb-4 title-font">Gratitude List</h2>
+        <p class="text-gray-700 mb-4">What are three things you are grateful for today?</p>
+        <textarea id="gratitude-list-text" rows="5" placeholder="1. I'm grateful for..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-purple-500 input-glow transition-colors"></textarea>
+        <button id="save-gratitude-button" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Gratitude List
+        </button>
+    </div>
+
+    <!-- Looking Forward Section -->
+    <div id="looking-forward-card" class="looking-forward-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-red-900 mb-4 title-font">Looking Forward</h2>
+        <p class="text-gray-700 mb-4">Write about something you're looking forward to in the near future.</p>
+        <textarea id="looking-forward-text" rows="5" placeholder="I'm looking forward to..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-red-500 input-glow transition-colors"></textarea>
+        <button id="save-looking-forward-button" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Looking Forward
+        </button>
+    </div>
+
+    <!-- Positive Moments Section -->
+    <div id="positive-moments-card" class="positive-moments-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-green-900 mb-4 title-font">Positive Moments</h2>
+        <p class="text-gray-700 mb-4">Reflect on a recent moment that made you smile or feel joy.</p>
+        <textarea id="positive-moments-text" rows="5" placeholder="A positive moment I had was..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-green-500 input-glow transition-colors"></textarea>
+        <button id="save-positive-moments-button" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Positive Moments
+        </button>
+    </div>
+
+    <!-- Personal Strengths Section -->
+    <div id="personal-strengths-card" class="personal-strengths-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-yellow-900 mb-4 title-font">Personal Strengths</h2>
+        <p class="text-gray-700 mb-4">List five of your strengths or qualities you are proud of.</p>
+        <textarea id="personal-strengths-text" rows="5" placeholder="1. I am proud of..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-yellow-500 input-glow transition-colors"></textarea>
+        <button id="save-personal-strengths-button" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Personal Strengths
+        </button>
+    </div>
+    
+    <!-- Happy Place Section -->
+    <div id="happy-place-card" class="happy-place-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-blue-900 mb-4 title-font">Happy Place</h2>
+        <p class="text-gray-700 mb-4">Describe a place where you feel most at peace or happiest.</p>
+        <textarea id="happy-place-text" rows="5" placeholder="My happy place is..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-blue-500 input-glow transition-colors"></textarea>
+        <button id="save-happy-place-button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Happy Place
+        </button>
+    </div>
+
+    <!-- Accomplishments Section -->
+    <div id="accomplishments-card" class="accomplishments-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-fuchsia-900 mb-4 title-font">Accomplishments</h2>
+        <p class="text-gray-700 mb-4">Reflect on a recent accomplishment, no matter how small.</p>
+        <textarea id="accomplishments-text" rows="5" placeholder="I'm proud of..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-fuchsia-500 input-glow transition-colors"></textarea>
+        <button id="save-accomplishments-button" class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Accomplishments
+        </button>
+    </div>
+
+    <!-- Support System Section -->
+    <div id="support-system-card" class="support-system-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-cyan-900 mb-4 title-font">Support System</h2>
+        <p class="text-gray-700 mb-4">Write about the people in your life who support and uplift you.</p>
+        <textarea id="support-system-text" rows="5" placeholder="I appreciate..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-cyan-500 input-glow transition-colors"></textarea>
+        <button id="save-support-system-button" class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Support System
+        </button>
+    </div>
+    
+    <!-- Favorite Memory Section -->
+    <div id="favorite-memory-card" class="favorite-memory-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-orange-900 mb-4 title-font">Favorite Memory</h2>
+        <p class="text-gray-700 mb-4">Recall a favorite memory that brings you joy.</p>
+        <textarea id="favorite-memory-text" rows="5" placeholder="My favorite memory is..."
+            class="w-full p-4 mb-4 rounded-xl border-2 border-gray-200 resize-none focus:border-orange-500 input-glow transition-colors"></textarea>
+        <button id="save-favorite-memory-button" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors">
+            Save Favorite Memory
+        </button>
+    </div>
+
+    <!-- Image Upload Section -->
+    <div id="image-upload-card" class="image-upload-card rounded-3xl shadow-2xl p-6 sm:p-10 w-full max-w-2xl text-center flex flex-col items-center mt-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4 title-font">Image of the Day</h2>
+        <p class="text-gray-700 mb-4">Upload your favorite image from today!</p>
+        
+        <div class="w-full flex flex-col items-center justify-center">
+            <label for="image-upload-input" class="cursor-pointer text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-full border border-blue-600 hover:border-blue-800 transition-colors">
+                Choose Image
+            </label>
+            <input type="file" id="image-upload-input" accept="image/*" class="hidden">
+            <span id="image-file-name" class="mt-2 text-sm text-gray-500">No file chosen</span>
+            <img id="image-preview" class="hidden mt-4 rounded-lg shadow-md max-w-full h-auto">
+        </div>
+        
+        <button id="save-image-button" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl w-full transition-colors mt-4 opacity-50 cursor-not-allowed" disabled>
+            Save Image
+        </button>
+    </div>
+
+    <!-- Modal for messages and past entries -->
+    <div id="my-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-75 z-50 justify-center items-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 relative">
+            <button id="close-modal-button" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h3 id="modal-title" class="text-2xl font-bold text-blue-900 mb-4"></h3>
+            <p id="modal-message" class="text-gray-700 mb-6"></p>
+            
+            <!-- Content for past entries -->
+            <div id="past-entries-modal-content" class="hidden">
+                <p class="text-sm text-gray-500 mb-4">Click an entry to expand it.</p>
+                <ul id="past-entries-list" class="max-h-80 overflow-y-auto"></ul>
+            </div>
+            
+            <!-- Loading spinner -->
+            <div id="modal-loading" class="hidden flex justify-center items-center py-8">
+                <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="journal.js"></script>
+</html>

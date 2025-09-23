@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT Thought Challenge</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="" href="cbt.css">
+</head>
+<body>
+    <div class="cbt-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>CBT Thought Challenge</h1>
+        <p>A guided exercise to help reframe negative thoughts.</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="step-content active" id="step1">
+            <label for="thoughtText">What is the negative thought?</label>
+            <textarea id="thoughtText" placeholder="e.g., 'I am a failure.'"></textarea>
+        </div>
+
+        <div class="step-content" id="step2">
+            <label for="emotionText">How did that thought make you feel?</label>
+            <textarea id="emotionText" placeholder="e.g., 'Sad, discouraged, worthless.'"></textarea>
+        </div>
+
+        <div class="step-content" id="step3">
+            <label for="evidenceForText">What evidence do you have that the thought is true?</label>
+            <textarea id="evidenceForText" placeholder="e.g., 'I failed my last project.'"></textarea>
+        </div>
+
+        <div class="step-content" id="step4">
+            <label for="evidenceAgainstText">What evidence do you have that the thought is NOT true?</label>
+            <textarea id="evidenceAgainstText" placeholder="e.g., 'I received a promotion last year. I helped my colleague with their work.'"></textarea>
+        </div>
+
+        <div class="step-content" id="step5">
+            <label for="reframedText">Create a new, more balanced and realistic thought.</label>
+            <textarea id="reframedText" placeholder="e.g., 'I am not a failure. I succeeded at many things in the past, and one failure doesn't define me.'"></textarea>
+        </div>
+
+        <div class="step-content" id="step6">
+            <div class="cbt-summary">
+                <div class="summary-card">
+                    <h3>Original Thought</h3>
+                    <p id="summaryOriginal"></p>
+                </div>
+                <div class="summary-card">
+                    <h3>Reframed Thought</h3>
+                    <p id="summaryReframed"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-btns">
+            <button class="btn btn-secondary" id="backBtn" style="display: none;">Back</button>
+            <button class="btn btn-primary" id="nextBtn">Next</button>
+            <button class="btn btn-primary" id="startOverBtn" style="display: none;">Start Over</button>
+        </div>
+    </div>
+    
+    <div class="explore-more-section">
+        <h2>Explore More</h2>
+        <div class="explore-more-grid">
+            <a href="#" class="explore-card">
+                <span class="material-icons">videogame_asset</span>
+                <span>Games Hub</span>
+            </a>
+            <a href="#" class="explore-card">
+                <span class="material-icons">local_hospital</span>
+                <span>Crisis Support</span>
+            </a>
+            <a href="#" class="explore-card">
+                <span class="material-icons">smart_toy</span>
+                <span>AI Chat</span>
+            </a>
+            <a href="#" class="explore-card">
+                <span class="material-icons">book</span>
+                <span>Personal Journal</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="cbt.js">
+        
+    </script>
+</body>
+</html>

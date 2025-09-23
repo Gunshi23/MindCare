@@ -1,0 +1,19 @@
+ :root {
+            --primary-color: #6a4fe6;
+            --accent-color: #5a3ce0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Custom styles for hover effects and shadows */
+        .article-container {
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(106, 79, 230, 0.4);
+        }

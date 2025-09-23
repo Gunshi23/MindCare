@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Support Center</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="crisis-support.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="page-title">Crisis Support Center</div>
+            <button class="emergency-btn" id="emergency-btn">
+                <span class="material-icons">phone_in_talk</span>
+                EMERGENCY HELP
+            </button>
+        </header>
+
+        <main>
+            <div class="section-title-group">
+                <h2 class="section-title">Immediate Support</h2>
+                <button id="immediate-toggle-btn" class="toggle-btn">Hide Immediate Support</button>
+            </div>
+            <section class="immediate-support-grid" id="immediate-support-section">
+                <div class="support-card">
+                    <h3>National Crisis Hotline</h3>
+                    <p><strong>988</strong><br>24/7 Crisis & Suicide Prevention</p>
+                    <a href="tel:988" class="btn">CALL NOW</a>
+                </div>
+                <div class="support-card">
+                    <h3>Crisis Text Line</h3>
+                    <p><strong>Text HOME to 741741</strong><br>24/7 Text-based Crisis Support</p>
+                    <a href="sms:741741&body=HOME" class="btn">START TEXT CHAT</a>
+                </div>
+            </section>
+
+            <div class="section-title-group">
+                <h2 class="section-title">Regional Support Lines</h2>
+                <button id="regional-toggle-btn" class="toggle-btn">Hide Regional Lines</button>
+            </div>
+            <section class="regional-lines-grid" id="regional-lines-section">
+                <div class="regional-card">
+                    <h4>Local Crisis Center</h4>
+                    <p>(555) 123-4567<br>Your Area</p>
+                </div>
+                <div class="regional-card">
+                    <h4>Teen Crisis Line</h4>
+                    <p>(555) 234-5678<br>Ages 13-24</p>
+                </div>
+                <div class="regional-card">
+                    <h4>Veterans Crisis Line</h4>
+                    <p>(555) 345-6789<br>Military Support</p>
+                </div>
+            </section>
+
+            <div class="section-title-group">
+                <h2 class="section-title">Quick Coping Exercises</h2>
+            </div>
+            <section class="coping-grid">
+                <div class="coping-card">
+                    <h3>Breathing Exercise</h3>
+                    <div class="breathing-visual" id="breathing-visual">
+                        <small>Tap to start<br>the animation</small>
+                    </div>
+                    <p>4-7-8 breathing technique, 4-7-8 minutes</p>
+                    <button class="btn" id="start-breathing">START BREATHING EXERCISE</button>
+                </div>
+                <div class="coping-card">
+                    <h3>5-4-3-2-1 Grounding</h3>
+                    <ul class="grounding-list">
+                        <li><span class="material-icons">visibility</span> 5 things you can see</li>
+                        <li><span class="material-icons">touch_app</span> 4 things you can touch</li>
+                        <li><span class="material-icons">hearing</span> 3 things you can hear</li>
+                        <li><span class="material-icons">restaurant</span> 2 things you can smell</li>
+                        <li><span class="material-icons">star</span> 1 thing you can taste</li>
+                    </ul>
+                    <p>Guided sensory awareness, 3 minutes</p>
+                    <button class="btn" id="start-grounding">START GROUNDING EXERCISE</button>
+                </div>
+            </section>
+            
+            <div class="section-title-group">
+                <h2 class="section-title">Motivational Resources</h2>
+            </div>
+            <section class="motivational-grid">
+                <div class="motivation-btn-group">
+                    <a href="#" class="btn">
+                        <span class="material-icons">videogame_asset</span><br>Games & Distraction
+                    </a>
+                    <a href="#" class="btn">
+                        <span class="material-icons">menu_book</span><br>Resources Hub
+                    </a>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#" class="footer-link-card">
+                    <span class="material-icons">favorite</span>
+                    Affirmations
+                </a>
+                <a href="#" class="footer-link-card">
+                    <span class="material-icons">self_improvement</span>
+                    Meditation
+                </a>
+                <a href="#" class="footer-link-card">
+                    <span class="material-icons">book</span>
+                    Journal
+                </a>
+                <a href="#" class="footer-link-card">
+                    <span class="material-icons">chat</span>
+                    Support Chat
+                </a>
+            </div>
+            <div class="footer-note">
+                You are not alone. Help is always available.<br>
+                If you're in immediate danger, call 911 or go to your nearest emergency room.
+            </div>
+        </footer>
+
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+    </div>
+
+    <!-- Modals and popups -->
+    <div id="emergency-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn material-icons">close</span>
+            <h3>Emergency Warning</h3>
+            <p>If this is a life-threatening emergency, please call 911 immediately. This button will connect you to a crisis hotline, which is a great resource, but not a replacement for emergency services.</p>
+            <div class="modal-btn-group">
+                <a href="tel:911" class="modal-btn confirm">Call 911</a>
+                <a href="tel:988" class="modal-btn confirm">Call 988 Crisis Line</a>
+                <button class="modal-btn cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="message-box" class="message-box"></div>
+
+    <script src="crisis-support.js">
+        
+    </script>
+</body>
+</html>

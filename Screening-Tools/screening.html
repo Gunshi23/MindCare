@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCare - Mental Health Screening</title>
+    <link rel="stylesheet" href="screening.css">
+</head>
+<body data-theme="light">
+    <header>
+        <h1>MindCare</h1>
+        <div class="mode-toggle" onclick="toggleTheme()">☀️</div>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>Mental Health Assessment</h2>
+            <p>Our screening tools can help assess your current mental health status. Your responses are completely confidential and will help us provide personalized support recommendations.</p>
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3>PHQ-9</h3>
+                    <p>Depression Screening</p>
+                    <p>Questions: 9</p>
+                    <p>Duration: ~5 minutes</p>
+                    <a href="/PHQ-9/phq.html" class="test-button">Start PHQ-9</a>
+                </div>
+                <div class="test-card">
+                    <h3>GAD-7</h3>
+                    <p>Anxiety Screening</p>
+                    <p>Questions: 7</p>
+                    <p>Duration: ~3 minutes</p>
+                    <a href="/GAD-7/gad.html" class="test-button">Start GAD-7</a>
+                </div>
+                <div class="test-card">
+                    <h3>DASS-21</h3>
+                    <p>General Wellbeing Check</p>
+                    <p>Questions: 21</p>
+                    <p>Duration: ~10 minutes</p>
+                    <a href="/DASS21/dass.html" class="test-button">Start DASS-21</a>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px; color: #777;"><strong>Important:</strong> These screenings are not diagnostic tools. They provide insights to guide support recommendations and help you prioritize your mental wellbeing.</p>
+        </section>
+
+        <section class="section">
+            <h2>Test Information</h2>
+
+            <div class="test-info">
+                <h4>PHQ-9 (Patient Health Questionnaire-9)</h4>
+                <p>This test is a **depression screening tool** used to monitor the severity of depressive symptoms. It's a quick, 9-question survey that assesses symptoms over the last two weeks, such as changes in sleep, appetite, energy, and mood.</p>
+                <ul>
+                    <li>**Features:** Questions are based on the diagnostic criteria for major depressive disorder from the DSM-5. It provides a numerical score that helps determine the level of depressive symptoms, ranging from minimal to severe.</li>
+                    <li>**Advantages:** It's **fast, easy to understand**, and widely used in clinical settings. Its brevity and straightforward scoring make it an excellent initial screening tool for depression.</li>
+                    <li>**When to Take It:** Take this test if you have been feeling persistently sad, hopeless, or have lost interest in activities you once enjoyed for more than two weeks. It's also useful for tracking your mood over time.</li>
+                </ul>
+            </div>
+
+            <div class="test-info">
+                <h4>GAD-7 (Generalized Anxiety Disorder 7-item scale)</h4>
+                <p>The GAD-7 is a **general anxiety screening tool**. It measures the severity of generalized anxiety symptoms over the past two weeks with just 7 questions.</p>
+                <ul>
+                    <li>**Features:** It assesses common anxiety symptoms like feeling nervous, worrying excessively, or being unable to stop worrying. Similar to the PHQ-9, it yields a numerical score that classifies anxiety levels.</li>
+                    <li>**Advantages:** Like the PHQ-9, it's highly efficient and reliable. It helps to quickly identify individuals who may have generalized anxiety disorder and require further evaluation.</li>
+                    <li>**When to Take It:** Take this test if you find yourself worrying constantly about a variety of things, feeling on edge, or having difficulty controlling your worries for a sustained period.</li>
+                </ul>
+            </div>
+
+            <div class="test-info">
+                <h4>DASS-21 (Depression, Anxiety, and Stress Scales)</h4>
+                <p>The DASS-21 is a **comprehensive self-report tool** that measures three related negative emotional states: depression, anxiety, and stress. It consists of 21 questions, with 7 questions dedicated to each scale.</p>
+                <ul>
+                    <li>**Features:** This test is unique because it provides **three separate scores** (depression, anxiety, and stress), allowing for a more nuanced understanding of your emotional state. It helps differentiate between symptoms of depression and anxiety, which can often overlap.</li>
+                    <li>**Advantages:** It provides a broader snapshot of your mental well-being than single-focus tests. The separate scores can help pinpoint specific areas of concern, such as high stress levels with low depression, guiding more targeted interventions.</li>
+                    <li>**When to Take It:** Use this test if you are experiencing a mix of different symptoms and want to understand which areas (depression, anxiety, or stress) are most prominent for you. It's a great starting point if you're unsure which specific condition you might be dealing with.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Crisis Support</h2>
+            <div class="crisis-support">
+                <p>If you're in crisis or having thoughts of harming yourself, please seek immediate help.</p>
+                <a href="crisis.html">Find Crisis Resources Near You</a>
+            </div>
+        </section>
+    </div>
+
+    <script src="screening.js">
+       
+    </script>
+</body>
+</html>

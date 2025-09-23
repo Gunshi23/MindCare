@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Search</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="" href="word-search.css">
+</head>
+<body>
+    <div class="game-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>Word Search</h1>
+        <p>Find hidden wellness words</p>
+
+        <div class="game-header">
+            <span class="timer">Time: <span id="timerDisplay">00:00</span></span>
+            <span class="score">Found: <span id="foundCount">0</span>/<span id="totalWords">0</span></span>
+        </div>
+        
+        <div class="grid-and-words">
+            <div id="wordGrid"></div>
+            <div class="word-list-container">
+                <h3 style="margin-top: 0;">Words to Find:</h3>
+                <ul class="word-list" id="wordList"></ul>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <button class="btn btn-primary" id="startButton">Start Game</button>
+            <button class="btn btn-secondary" id="findButton">Find a Word</button>
+        </div>
+        
+        <div class="resources-section">
+            <h3>Explore More Games</h3>
+            <ul class="resources-list">
+                <li><a href="breathing.html"><span class="material-icons">self_improvement</span>Breathing Guide</a></li>
+                <li><a href="doodling-pad.html"><span class="material-icons">brush</span>Doodle Pad</a></li>
+                <li><a href="memory-puzzle.html"><span class="material-icons">memory</span>Memory Match</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="word-search.js">
+        
+    </script>
+</body>
+</html>

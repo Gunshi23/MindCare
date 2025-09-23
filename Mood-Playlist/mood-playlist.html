@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychoeducational Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mood-playlist.css">
+</head>
+<body class="light-theme">
+    <button id="theme-toggle">🌙</button>
+    <div class="main-container">
+        <div class="sidebar">
+            <h1>🌿 Psychoeducational Hub</h1>
+            <p>Explore videos for mindfulness, wellness, and positivity.</p>
+            <h2 class="section-title">Categories</h2>
+            <div class="btn-container">
+                <button onclick="loadVideos('meditation')">🧘 Meditation</button>
+                <button onclick="loadVideos('mental_health')">🎙 Mental Health Podcasts</button>
+                <button onclick="loadVideos('instrumental_guitar')">🎸 Guitar</button>
+                <button onclick="loadVideos('instrumental_piano')">🎹 Piano</button>
+                <button onclick="loadVideos('instrumental_flute')">🎼 Flute</button>
+                <button onclick="loadVideos('instrumental_violin')">🎻 Violin</button>
+                <button onclick="loadVideos('mood_relax')">😌 Relax</button>
+                <button onclick="loadVideos('mood_calm')">🌙 Calm</button>
+                <button onclick="loadVideos('mood_happy')">😄 Happy</button>
+                <button onclick="loadVideos('mood_sad')">😢 Sad</button>
+                <button onclick="loadVideos('nature_sea')">🌊 Sea</button>
+                <button onclick="loadVideos('nature_birds')">🕊 Birds</button>
+                <button onclick="loadVideos('nature_rain')">🌧 Rain</button>
+                <button onclick="loadVideos('nature_forest')">🌲 Forest</button>
+            </div>
+        </div>
+        
+        <div class="content-area">
+            <h2 class="section-title">Suggested Playlists</h2>
+            <div id="videos" class="videos"></div>
+        </div>
+    </div>
+    
+    <script src="mood-playlist.js"></script>
+</body>
+</html>

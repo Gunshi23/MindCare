@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MindCare - GAD-7 Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="gad.css">
+</head>
+<body class="light">
+    <div class="top-bar">
+        <span class="logo">MindCare</span>
+        <label class="switch">
+            <input type="checkbox" id="themeSwitcher">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="left-section">
+            <div class="header">GAD-7 Test</div>
+            <div id="gad7" class="content active">
+                <form id="gad7-form">
+                    <div id="questions"></div>
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="result" class="result" style="display:none;"></div>
+            </div>
+        </div>
+        
+        <div class="right-section">
+            <a href="/PHQ-9/phq.html" class="action-button">
+                <div class="button-icon">🤔</div>
+                <div class="button-content">
+                    <span class="button-title">PHQ-9 Test</span>
+                    <span class="button-description">Screen for depression</span>
+                </div>
+            </a>
+            <a href="/DASS21/dass.html" class="action-button">
+                <div class="button-icon">⚖️</div>
+                <div class="button-content">
+                    <span class="button-title">DASS21 Test</span>
+                    <span class="button-description">Assess depression, anxiety, and stress</span>
+                </div>
+            </a>
+            <a href="crisis_support.html" class="action-button">
+                <div class="button-icon">🤝</div>
+                <div class="button-content">
+                    <span class="button-title">Crisis Support</span>
+                    <span class="button-description">Immediate help for urgent situations</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="gad.js">
+       
+    </script>
+</body>
+</html>

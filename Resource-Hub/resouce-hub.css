@@ -1,0 +1,28 @@
+ body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Use Tailwind's dark mode variant instead of a separate class */
+        .card-shadow {
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .dark .card-shadow {
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        .button-shadow {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dark .button-shadow {
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+        
+        .page-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }

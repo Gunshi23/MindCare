@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MindCare Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="text-chat.css"/>
+</head>
+<body>
+    <div class="top-bar">
+        <span class="logo">MindCare</span>
+        <label class="switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div class="main-wrapper">
+        <div class="left-section">
+            <a href="/Screening-Tools/screening.html" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#6c63ff">
+                        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 9V3.5L18.5 9H13zM16 13h-4v2h4v-2zm-4 4h4v2h-4v-2zM12 9.5L18.5 16h-5.5v-2h-2v-4h2v2h4z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Screening Tools</div>
+                <div class="card-subtitle">Check mental health</div>
+            </a>
+            <a href="/Voice-Chat/voice-chat.html" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#6c63ff">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                    </svg>
+                </div>
+                <div class="card-title">AI Chat</div>
+                <div class="card-subtitle">Get instant support</div>
+            </a>
+            <a href="/Crisis-Support/crisis-support.html" class="card-link">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#6c63ff">
+                        <path d="M12 2c-4.42 0-8 3.58-8 8s3.58 8 8 8c.28 0 .5.22.5.5s-.22.5-.5.5c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9c0 1.25-.32 2.4-.88 3.4L18 16v-2h-2v-2h2c.86 0 1.67-.32 2.29-.88L22 10l-1.4-1.4c-.62.62-1.43.98-2.29.98-2.29 0-4.42-1.15-5.65-3.15C10.58 4.6 8.5 2 6 2h-1c-.55 0-1 .45-1 1s.45 1 1 1h1c1.86 0 3.53 1.18 4.47 3.03.95 1.85 2.76 3.03 4.7 3.03h2v-2z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Crisis Support</div>
+                <div class="card-subtitle">Get immediate help</div>
+            </a>
+        </div>
+        <div class="right-section">
+            <div class="chat-wrapper">
+                <div class="header">
+                    <span class="logo">MindCare</span>
+                </div>
+                <div class="chat-box" id="chatBox"></div>
+                <div class="input-area">
+                    <input type="text" id="userInput" placeholder="Type a message..."/>
+                    <button onclick="sendMessage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="text-chat.js">
+       
+    </script>
+</body>
+</html>

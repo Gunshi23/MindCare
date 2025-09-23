@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calming Sound Mixer</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <link rel="stylesheet" type="" href="sound-mixer.css">
+</head>
+<body>
+    <div class="sound-mixer-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>Sound Mixer</h1>
+        <p>Create a personalized soundscape for relaxation or focus.</p>
+
+        <div class="sound-list">
+            <div class="sound-item" data-sound="rain">
+                <span class="material-icons">thunderstorm</span>
+                <h3>Rain</h3>
+                <div class="volume-controls">
+                    <span class="material-icons">volume_off</span>
+                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <span class="material-icons">volume_up</span>
+                </div>
+                <audio id="audio-rain" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/rain-sfx.mp3" preload="auto"></audio>
+            </div>
+
+            <div class="sound-item" data-sound="fireplace">
+                <span class="material-icons">local_fire_department</span>
+                <h3>Fireplace</h3>
+                <div class="volume-controls">
+                    <span class="material-icons">volume_off</span>
+                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <span class="material-icons">volume_up</span>
+                </div>
+                <audio id="audio-fireplace" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/fireplace-sfx.mp3" preload="auto"></audio>
+            </div>
+
+            <div class="sound-item" data-sound="forest">
+                <span class="material-icons">forest</span>
+                <h3>Forest</h3>
+                <div class="volume-controls">
+                    <span class="material-icons">volume_off</span>
+                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <span class="material-icons">volume_up</span>
+                </div>
+                <audio id="audio-forest" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/forest-sfx.mp3" preload="auto"></audio>
+            </div>
+
+            <div class="sound-item" data-sound="ocean">
+                <span class="material-icons">waves</span>
+                <h3>Ocean</h3>
+                <div class="volume-controls">
+                    <span class="material-icons">volume_off</span>
+                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <span class="material-icons">volume_up</span>
+                </div>
+                <audio id="audio-ocean" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/ocean-sfx.mp3" preload="auto"></audio>
+            </div>
+        </div>
+        
+        <button class="play-pause-btn" id="masterPlayPause">
+            <span class="material-icons">play_arrow</span>
+        </button>
+
+        <div class="resources-section">
+            <h3>Explore More Games</h3>
+            <ul class="resources-list">
+                <li><a href="breathing.html"><span class="material-icons">self_improvement</span>Breathing Guide</a></li>
+                <li><a href="doodling-pad.html"><span class="material-icons">brush</span>Doodle Pad</a></li>
+                <li><a href="memory-puzzle.html"><span class="material-icons">memory</span>Memory Match</a></li>
+                <li><a href="word-search.html"><span class="material-icons">search</span>Word Search</a></li>
+                <li><a href="2048.html"><span class="material-icons">grid_on</span>2048 Game</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="sound-mixer.js">
+       
+    </script>
+</body>
+</html>

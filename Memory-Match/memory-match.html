@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Match: Positive Affirmations</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="" href="memory-match.css">
+      
+</head>
+<body>
+    <div class="game-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>Memory Match</h1>
+        <p>Match positive affirmations</p>
+
+        <div class="game-info">
+            <span>Time: <span id="timerDisplay">00:00</span></span>
+            <span>Moves: <span id="movesDisplay">0</span></span>
+        </div>
+        
+        <div class="memory-grid-container">
+            <div class="memory-grid" id="memoryGrid">
+                </div>
+        </div>
+
+        <div class="game-controls">
+            <button class="btn btn-primary" id="newGameBtn">New Game</button>
+        </div>
+
+        <div class="game-overlay" id="gameOverOverlay">
+            <span class="material-icons">celebration</span>
+            <span>You did it!</span>
+            <span id="finalTime" style="font-size: 0.8em; margin-top: 10px;"></span>
+            <span id="finalMoves" style="font-size: 0.8em;"></span>
+            <button class="btn btn-primary" style="margin-top: 20px;" id="playAgainBtn">Play Again</button>
+        </div>
+
+        <div class="resources-section">
+            <h3>Explore More Games</h3>
+            <ul class="resources-list">
+                <li><a href="breathing.html"><span class="material-icons">self_improvement</span>Breathing Guide</a></li>
+                <li><a href="doodling-pad.html"><span class="material-icons">brush</span>Doodle Pad</a></li>
+                <li><a href="word-search.html"><span class="material-icons">search</span>Word Search</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="memory-match.js">
+        
+    </script>
+</body>
+</html>

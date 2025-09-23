@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desk Stretches</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="" href="desk-exercise.css">
+</head>
+<body>
+    <div class="exercise-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>Desk Stretches</h1>
+        <p>A guided 10-minute routine to relieve neck, shoulder, and back tension.</p>
+
+        <div class="timer-display" id="timerDisplay">10:00</div>
+        <div class="current-stretch-name" id="currentStretchName">Get ready!</div>
+
+        <h2 class="stretch-list-header">Follow these steps:</h2>
+        <ul class="stretch-list" id="stretchList">
+            <li>
+                <div class="stretch-number">1</div>
+                <div>
+                    <h4>Neck Rolls</h4>
+                    <p>Slowly roll your head from side to side.</p>
+                </div>
+            </li>
+            <li>
+                <div class="stretch-number">2</div>
+                <div>
+                    <h4>Shoulder Shrugs</h4>
+                    <p>Lift your shoulders up to your ears, then relax.</p>
+                </div>
+            </li>
+            <li>
+                <div class="stretch-number">3</div>
+                <div>
+                    <h4>Cat-Cow Stretch</h4>
+                    <p>Arch and round your back in your chair.</p>
+                </div>
+            </li>
+            <li>
+                <div class="stretch-number">4</div>
+                <div>
+                    <h4>Spinal Twist</h4>
+                    <p>Gently twist your torso to one side, then the other.</p>
+                </div>
+            </li>
+            <li>
+                <div class="stretch-number">5</div>
+                <div>
+                    <h4>Wrist Stretches</h4>
+                    <p>Extend your arm and gently pull your hand back.</p>
+                </div>
+            </li>
+        </ul>
+        
+        <div class="video-wrapper">
+            <video id="exerciseVideo" controls playsinline>
+                <source src="/assets/videoplayback.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="suggested-videos" id="suggestedVideosSection">
+            <h2>Suggested Videos</h2>
+            <div class="suggested-videos-grid" id="suggestedVideosGrid">
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/250x140?text=Video+1" alt="Placeholder 1" class="thumbnail">
+                    <div class="video-info">
+                        <h3>Quick Neck & Shoulder Relief</h3>
+                        <p>Short stretches for immediate tension relief.</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/250x140?text=Video+2" alt="Placeholder 2" class="thumbnail">
+                    <div class="video-info">
+                        <h3>Lower Back Pain Stretches</h3>
+                        <p>Gentle exercises to alleviate lower back discomfort.</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/250x140?text=Video+3" alt="Placeholder 3" class="thumbnail">
+                    <div class="video-info">
+                        <h3>Mindful Breathing for Stress</h3>
+                        <p>A guided session to calm your mind and body.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn" id="startBtn">
+            <span class="material-icons">play_arrow</span>
+            Start Exercise
+        </button>
+    </div>
+
+    <script src="desk-exercise.js">
+        
+    </script>
+</body>
+</html>
