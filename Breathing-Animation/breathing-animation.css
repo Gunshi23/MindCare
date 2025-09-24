@@ -3,9 +3,9 @@
             --card-bg: #ffffff;
             --text-color: #4a4a4a;
             --secondary-text: #666666;
-            --primary-color: #6a4fe6;
-            --accent-color: #4CAF50;
-            --breathe-circle-color: #2196F3;
+            --primary-color: #fdaaaa;
+            --accent-color: #fdaaaa;
+            --breathe-circle-color: #fdaaaa;
             --shadow: rgba(0, 0, 0, 0.1);
         }
 
@@ -13,9 +13,9 @@
             --bg-color: #1c1e2b;
             --card-bg: #16213e;
             --text-color: #f5f5f5;
-            --secondary-text: #b0b0b0;
+            --secondary-text: #bd86fc;
             --primary-color: #8c7ae6;
-            --breathe-circle-color: #61dafb;
+            --breathe-circle-color: #bd86fc;
             --shadow: rgba(0, 0, 0, 0.4);
         }
 
