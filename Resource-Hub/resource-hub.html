@@ -45,8 +45,8 @@
         }
 
         .logo{
-            height: 50px;
-            width: auto;
+            height: 90px;
+            width: 150px;
         }
 
         /* Generic classes to map to CSS variables */
@@ -455,7 +455,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
             setTheme(prefersDark ? 'dark' : 'light');
         });
 
