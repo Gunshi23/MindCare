@@ -4,9 +4,9 @@
             --card-bg-light: #ffffff;
             --text-color-light: #333333;
             --header-bg-light: #ffffff;
-            --secondary-text-light: #FDAAAA;
-            --border-color-light: #FDAAAA;
-            --accent-color-light: #FDAAAA;
+            --secondary-text-light: #bb86fc;
+            --border-color-light: #bb86fc;
+            --accent-color-light: #bb86fc;
             --button-bg-light: #2c3e50;
             --button-text-light: #ffffff;
         }
@@ -29,7 +29,7 @@
             margin: 0;
             padding: 0;
             background-color: var(--bg-color-light);
-            color: var(--text-color-light);
+            color: rgb(236, 233, 233);
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -123,6 +123,7 @@
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 5px;
+            color:black;
         }
 
         .welcome-section p {
@@ -131,7 +132,7 @@
         }
 
         .daily-affirmation {
-            background-color: black;
+            background-color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -191,7 +192,7 @@
             text-decoration: none;
             color: inherit;
             transition: all 0.3s ease;
-            background-color: black;
+            background-color: white;
         }
 
         .action-item:hover {
@@ -239,7 +240,7 @@
             border-radius: 10px;
             border: 1px solid var(--border-color-light);
             margin-bottom: 15px;
-            background-color: black;
+            background-color: white;
             color: white;
         }
 

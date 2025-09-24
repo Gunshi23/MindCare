@@ -115,13 +115,13 @@
 
         .crisis-support {
             padding: 10px 15px;
-            border: 1px solid var(--input-border-light);
+
             border-radius: 25px;
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
-            background-color: var(--card-bg-light);
+            
             transition: all 0.3s ease;
         }
 
@@ -386,4 +386,13 @@
             background-color: #4a3a1a;
             color: #fbbf24;
             border-color: #f59e0b;
+        }
+
+        .submit-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            
+            color: red;
         }
