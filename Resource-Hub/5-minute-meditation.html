@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Minute Meditation</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color-light: #f4f7f9;
+            --card-bg-light: #ffffff;
+            --text-color-light: #333333;
+            --secondary-text-light: #666666;
+            --border-color-light: #e0e0e0;
+            --primary-color: #6a4fe6;
+            --button-text-color: #ffffff;
+            --meditation-circle-color: #4CAF50;
+            --timer-text-color: #6a4fe6;
+        }
+
+        body.dark-mode {
+            --bg-color-light: #1a1a2e;
+            --card-bg-light: #16213e;
+            --text-color-light: #e0e0e0;
+            --secondary-text-light: #b0b0b0;
+            --border-color-light: #3a3a5a;
+            --meditation-circle-color: #388E3C;
+            --timer-text-color: #8c7ae6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            overflow: auto;
+        }
+
+        .meditation-container {
+            background-color: var(--card-bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 95%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 2.2em;
+        }
+
+        p {
+            color: var(--secondary-text-light);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .meditation-visual {
+            width: 250px;
+            height: 250px;
+            background-color: var(--meditation-circle-color);
+            border-radius: 50%;
+            margin-bottom: 30px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+
+        .meditation-prompt {
+            position: absolute;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            z-index: 10;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .meditation-prompt.active {
+            opacity: 1;
+        }
+        
+        .timer-display {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 4.5em;
+            font-weight: 700;
+            color: var(--timer-text-color);
+            margin: 20px 0 10px;
+            text-shadow: 0 0 15px rgba(106, 79, 230, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.1s;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-text-light);
+        }
+
+        .btn:hover {
+            background-color: #5a3ce0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #555;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg-light);
+            border: 1px solid var(--border-color-light);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+            z-index: 101;
+        }
+
+        .theme-toggle .material-icons {
+            font-size: 24px;
+            color: var(--text-color-light);
+            transition: color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-color-light);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="meditation-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>5-Minute Meditation</h1>
+        <p>A guided practice to start your day with calm.</p>
+
+        <div class="meditation-visual">
+            <span class="meditation-prompt" id="meditationPrompt">Get comfortable.</span>
+        </div>
+        
+        <audio id="meditationAudio" preload="auto">
+            <source src="/assets/meditation.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="timer-display" id="timerDisplay">05:00</div>
+        
+        <button class="btn" id="startBtn">
+            <span class="material-icons">play_arrow</span>
+            Start Exercise
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const meditationAudio = document.getElementById('meditationAudio');
+            const meditationPrompt = document.getElementById('meditationPrompt');
+            const timerDisplay = document.getElementById('timerDisplay');
+            const startBtn = document.getElementById('startBtn');
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const totalTime = 300; // 5 minutes in seconds
+            let timeLeft = totalTime;
+            let timerInterval;
+            let isRunning = false;
+
+            const prompts = [
+                { time: 0, text: "Breathe in deeply. Hold for a moment." },
+                { time: 60, text: "Focus on the sound of your breath." },
+                { time: 120, text: "Notice any thoughts without judgment." },
+                { time: 180, text: "Feel your body relaxing." },
+                { time: 240, text: "Prepare to return to your day." }
+            ];
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+            }
+
+            function updatePrompt() {
+                const elapsed = totalTime - timeLeft;
+                let currentPrompt = "Get comfortable.";
+                for (let i = prompts.length - 1; i >= 0; i--) {
+                    if (elapsed >= prompts[i].time) {
+                        currentPrompt = prompts[i].text;
+                        break;
+                    }
+                }
+                meditationPrompt.textContent = currentPrompt;
+                meditationPrompt.classList.add('active');
+            }
+
+            function updateUI() {
+                timerDisplay.textContent = formatTime(timeLeft);
+                if (isRunning) {
+                    startBtn.innerHTML = `<span class="material-icons">pause</span> Pause`;
+                    startBtn.classList.add('btn-secondary');
+                } else {
+                    startBtn.innerHTML = `<span class="material-icons">play_arrow</span> Start Exercise`;
+                    startBtn.classList.remove('btn-secondary');
+                }
+            }
+
+            function startMeditation() {
+                if (isRunning) return;
+                isRunning = true;
+                meditationAudio.play();
+                updatePrompt();
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    updatePrompt();
+                    updateUI();
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                        meditationAudio.pause();
+                        meditationPrompt.textContent = "Exercise Complete!";
+                        setTimeout(() => { meditationPrompt.classList.remove('active'); }, 2000);
+                        startBtn.innerHTML = `<span class="material-icons">replay</span> Play Again`;
+                        startBtn.classList.remove('btn-secondary');
+                    }
+                }, 1000);
+            }
+
+            function pauseMeditation() {
+                isRunning = false;
+                meditationAudio.pause();
+                clearInterval(timerInterval);
+                updateUI();
+            }
+
+            function toggleMeditation() {
+                if (timeLeft <= 0) {
+                    resetMeditation();
+                } else if (isRunning) {
+                    pauseMeditation();
+                } else {
+                    startMeditation();
+                }
+            }
+
+            function resetMeditation() {
+                meditationAudio.currentTime = 0;
+                meditationAudio.pause();
+                timeLeft = totalTime;
+                isRunning = false;
+                updatePrompt();
+                updateUI();
+                meditationPrompt.classList.add('active');
+            }
+            
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                if (savedTheme === 'dark-mode') {
+                    themeToggle.querySelector('.material-icons').textContent = 'light_mode';
+                }
+            }
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+                themeToggle.querySelector('.material-icons').textContent = body.classList.contains('dark-mode') ? 'light_mode' : 'brightness_2';
+            });
+
+            startBtn.addEventListener('click', toggleMeditation);
+            meditationAudio.addEventListener('ended', () => {
+                pauseMeditation();
+                meditationPrompt.textContent = "Exercise Complete!";
+                startBtn.innerHTML = `<span class="material-icons">replay</span> Play Again`;
+                startBtn.classList.remove('btn-secondary');
+            });
+            
+            updateUI();
+            meditationPrompt.classList.add('active'); // Show initial prompt
+        });
+    </script>
+</body>
+</html>

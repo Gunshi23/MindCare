@@ -7,253 +7,492 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="" href="resource-hub.css">
     <script src="https://cdn.tailwindcss.com"></script>
-   
-</head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    <style>
+        :root {
+            /* Light theme colors */
+            --bg-color: #f7f9fc;
+            --text-color: #fdaaaa;
+            --secondary-text-color: black; /* A slightly different shade for contrast */
+            --card-bg: #ffffff;
+            --button-bg: #fdaaaa;
+            --button-text-color: #ffffff;
+            --button-hover-bg: #fa8888;
+            --card-shadow: rgba(0, 0, 0, 0.05);
+            --button-shadow: rgba(0, 0, 0, 0.1);
+            --icon-color: #fdaaaa;
+        }
 
-    <div id="main-page" class="page-content p-4 sm:p-8">
-        <header class="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
-            <div class="flex items-center">
-                <!-- Swapped for a more modern icon -->
-                <svg class="w-8 h-8 mr-2 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.467 9.493 5.176 8 5.176c-4.22 0-7.64 3.42-7.64 7.64s3.42 7.64 7.64 7.64c1.493 0 2.832-.291 4-.803m0-13c1.168.509 2.507.791 4 .803 4.22 0 7.64-3.42 7.64-7.64s-3.42-7.64-7.64-7.64c-1.493 0-2.832.291-4 .803m-2 12.016a5.5 5.5 0 01-11 0c0-3.038 2.462-5.5 5.5-5.5s5.5 2.462 5.5 5.5zM12 6a6 6 0 100 12A6 6 0 0012 6z"></path>
-                </svg>
-                <span class="text-xl font-semibold text-gray-800 dark:text-gray-100">Resource Hub</span>
-            </div>
-            <div class="flex items-center">
+        body.dark {
+            /* Dark theme colors */
+            --bg-color: black;
+            --text-color: #bd86fc;
+            --secondary-text-color: white; /* A slightly different shade for contrast */
+            --card-bg: #1a1526;
+            --button-bg: #bd86fc;
+            --button-text-color: #ffffff;
+            --button-hover-bg: #a164e0;
+            --card-shadow: rgba(255, 255, 255, 0.05);
+            --button-shadow: rgba(255, 255, 255, 0.1);
+            --icon-color: #bd86fc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .logo{
+            height: 50px;
+            width: auto;
+        }
+
+        /* Generic classes to map to CSS variables */
+        .text-primary { color: var(--text-color); }
+        .text-secondary { color: var(--secondary-text-color); }
+        .bg-card { background-color: var(--card-bg); }
+        .bg-button { background-color: var(--button-bg); }
+        .bg-button-hover:hover { background-color: var(--button-hover-bg); }
+        .text-button { color: var(--button-text-color); }
+        .icon-color { color: var(--icon-color); }
+        .text-accent-light { color: #fdaaaa; }
+        .text-accent-dark { color: #bd86fc; }
+
+        .card-shadow {
+            box-shadow: 0px 4px 15px var(--card-shadow);
+        }
+        
+        .button-shadow {
+            box-shadow: 0px 4px 10px var(--button-shadow);
+        }
+        
+        .page-content {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="light">
+
+    <div id="main-page" class="page-content active p-4 sm:p-8">
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-6">
+            <a href="/index.html" class="flex items-center mb-4 sm:mb-0 space-x-2">
+                <!-- Logo Image -->
+                <img src="/assets/finallogo.png" alt="MindCare Logo" class="logo"/>
+                <span class="text-xl font-semibold text-primary"></span>
+            </a>
+            <div class="relative flex items-center space-x-4">
                 <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
-                    <svg id="sun-icon" class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" style="display: none;">
+                    <svg id="sun-icon" class="w-5 h-5 text-icon-color" fill="currentColor" viewBox="0 0 20 20" style="display: none;">
                         <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 1.414a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM4 10a1 1 0 01-1 1H2a1 1 0 110-2h1a1 1 0 011 1zm8.364-5.636a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zM14.293 15.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 011.414-1.414l.707.707zM10 16a1 1 0 01-1 1v1a1 1 0 112 0v-1a1 1 0 01-1-1zm-4-1.414a1 1 0 010-1.414l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.414 0z"></path>
                     </svg>
-                    <svg id="moon-icon" class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <svg id="moon-icon" class="w-5 h-5 text-icon-color" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
                 </button>
             </div>
         </header>
-        
+
         <main class="space-y-8">
             <section class="section">
-                <h2 class="text-lg font-semibold mb-4 flex items-center text-gray-800 dark:text-gray-100">
-                    <svg class="w-5 h-5 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                <h2 class="text-lg font-semibold mb-4 flex items-center text-primary">
+                    <svg class="w-5 h-5 mr-2 icon-color" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.785.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"></path>
                     </svg>
                     Featured Resources
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/Guided-Meditation/g-meditation.html" class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/A3E635/1F2937?text=Guided%20Meditation" alt="Guided Meditation for Anxiety Relief" class="rounded-xl mb-4">
-                        <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Guided Anxiety Relief</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">A 20-minute body scan exercise with calming music.</p>
-                        <div class="flex items-center text-sm text-gray-500 mb-4">
-                            <svg class="w-4 h-4 mr-1 text-purple-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168a1 1 0 00-1.285 1.258l.836 1.144a1 1 0 001.285-.929V8a1 1 0 00-.836-.929zM10 14a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                    <a href="/Guided-Meditation/g-meditation.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('Guided Anxiety Relief', '20-minute body scan exercise with calming music.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">Guided Anxiety Relief</h3>
+                        <p class="text-sm text-secondary mb-4">20-minute body scan exercise with calming music.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168a1 1 0 00-1.285 1.258l.836 1.144a1 1 0 001.285-.929V8a1 1 0 00-.836-.929zM10 14a1 1 0 100-2 1 1 0 000 2z"></path></svg>
                             <span class="mr-3">15 minutes</span>
-                            <svg class="w-4 h-4 mr-1 text-purple-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
                             <span>English</span>
                         </div>
                         <div class="mt-auto flex justify-end">
-                            <span class="action-button bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors button-shadow text-sm" data-action="Play Now">Play Now</span>
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Play Now">Play Now</span>
                         </div>
                     </a>
-                    <a href="/CBT/cbt.html" class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/F06292/1F2937?text=CBT%20Worksheet" alt="CBT Thought Record Worksheet" class="rounded-xl mb-4">
-                        <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">CBT Thought Record</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">An interactive worksheet to challenge negative thought patterns.</p>
-                        <div class="flex items-center text-sm text-gray-500 mb-4">
-                            <svg class="w-4 h-4 mr-1 text-pink-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.785.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"></path></svg>
+                    <a href="/CBT/cbt.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('CBT Thought Record', 'Interactive worksheet to challenge negative thought patterns.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">CBT Thought Record</h3>
+                        <p class="text-sm text-secondary mb-4">Interactive worksheet to challenge negative thought patterns.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.785.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"></path></svg>
                             <span class="mr-3">20 minutes</span>
-                            <svg class="w-4 h-4 mr-1 text-pink-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
                             <span>English</span>
                         </div>
                         <div class="mt-auto flex justify-end">
-                            <span class="action-button border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 px-6 py-2 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors button-shadow text-sm" data-action="Start Exercise">Start Exercise</span>
+                            <span class="action-button border border-gray-300 dark:border-gray-600 text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors button-shadow text-sm" data-action="Start Exercise">Start Exercise</span>
                         </div>
                     </a>
-                    <a href="study-beats.html" class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/4FD1C5/1F2937?text=Study%20Beats" alt="Lo-Fi music for focus" class="rounded-xl mb-4">
-                        <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Focus & Study Beats</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Lo-Fi instrumental music to enhance concentration.</p>
-                        <div class="flex items-center text-sm text-gray-500 mb-4">
-                            <svg class="w-4 h-4 mr-1 text-teal-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                    <a href="focus-beats.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('Focus & Study Beats', 'Lo-fi instrumental music to enhance concentration.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">Focus & Study Beats</h3>
+                        <p class="text-sm text-secondary mb-4">Lo-Fi instrumental music to enhance concentration.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
                             <span class="mr-3">50 minutes</span>
-                            <svg class="w-4 h-4 mr-1 text-teal-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
                             <span>No vocals</span>
                         </div>
                         <div class="mt-auto flex justify-end">
-                            <span class="action-button bg-green-600 text-white px-6 py-2 rounded-full font-medium hover:bg-green-700 transition-colors button-shadow text-sm" data-action="Listen on Spotify">Play</span>
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Listen on Spotify">Play</span>
+                        </div>
+                    </a>
+                    <a href="/Mood-Playlist/mood-playlist.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('Mood Playlist', 'Music curated to match and lift your mood.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">Mood Playlist</h3>
+                        <p class="text-sm text-secondary mb-4">Music curated to match and lift your mood.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M18 3a2 2 0 00-2-2h-4a2 2 0 00-2 2v14a2 2 0 002 2h4a2 2 0 002-2V3zM4 5a2 2 0 00-2 2v8a2 2 0 002 2h4a2 2 0 002-2V7a2 2 0 00-2-2H4z"></path></svg>
+                            <span class="mr-3">Anytime</span>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <span>Varies</span>
+                        </div>
+                        <div class="mt-auto flex justify-end">
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Listen to Playlist">Play</span>
+                        </div>
+                    </a>
+                    <a href="5-minute-meditation.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('5-Minute Meditation', 'A quick, guided meditation to help you find your calm.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">5-Minute Meditation</h3>
+                        <p class="text-sm text-secondary mb-4">A quick, guided meditation to help you find your calm.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168a1 1 0 00-1.285 1.258l.836 1.144a1 1 0 001.285-.929V8a1 1 0 00-.836-.929zM10 14a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                            <span class="mr-3">5 minutes</span>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <span>Mindfulness</span>
+                        </div>
+                        <div class="mt-auto flex justify-end">
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Start Meditation">Start</span>
+                        </div>
+                    </a>
+                    <a href="box-breathing.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('Box Breathing', 'A simple yet powerful technique to reduce stress and anxiety.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">Box Breathing</h3>
+                        <p class="text-sm text-secondary mb-4">A simple yet powerful technique to reduce stress and anxiety.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168a1 1 0 00-1.285 1.258l.836 1.144a1 1 0 001.285-.929V8a1 1 0 00-.836-.929zM10 14a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                            <span class="mr-3">3 minutes</span>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <span>Breathing</span>
+                        </div>
+                        <div class="mt-auto flex justify-end">
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Start Box Breathing">Start</span>
+                        </div>
+                    </a>
+                    <a href="/Journal/journal.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('Personal Journal', 'A private space to write your thoughts and track your feelings.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">Personal Journal</h3>
+                        <p class="text-sm text-secondary mb-4">A private space to write your thoughts and track your feelings.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm0 2h12v10H4V5z"></path></svg>
+                            <span class="mr-3">Anytime</span>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <span>Reflection</span>
+                        </div>
+                        <div class="mt-auto flex justify-end">
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Start Journaling">Start</span>
+                        </div>
+                    </a>
+                    <a href="/Poems/poems.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('Poems', 'A collection of famous and uplifting poems.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">Poems</h3>
+                        <p class="text-sm text-secondary mb-4">A collection of famous and uplifting poems.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168a1 1 0 00-1.285 1.258l.836 1.144a1 1 0 001.285-.929V8a1 1 0 00-.836-.929zM10 14a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                            <span class="mr-3">Short read</span>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <span>Inspiration</span>
+                        </div>
+                        <div class="mt-auto flex justify-end">
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Read Poems">Read</span>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" class="bg-card p-6 rounded-2xl card-shadow flex flex-col" onclick="goToOtherPage('Self-Care Toolkit', 'A collection of quick activities to help you relax and recharge.')">
+                        <h3 class="font-semibold text-lg mb-1 text-primary">Self-Care Toolkit</h3>
+                        <p class="text-sm text-secondary mb-4">A collection of quick activities to help you relax and recharge.</p>
+                        <div class="flex items-center text-sm text-secondary mb-4">
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168a1 1 0 00-1.285 1.258l.836 1.144a1 1 0 001.285-.929V8a1 1 0 00-.836-.929zM10 14a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                            <span class="mr-3">5-10 minutes</span>
+                            <svg class="w-4 h-4 mr-1 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path d="M2 10a8 8 0 1116 0A8 8 0 012 10z"></path></svg>
+                            <span>Relaxation</span>
+                        </div>
+                        <div class="mt-auto flex justify-end">
+                            <span class="action-button bg-button text-button px-6 py-2 rounded-full font-medium bg-button-hover transition-colors button-shadow text-sm" data-action="Open Toolkit">Open</span>
                         </div>
                     </a>
                 </div>
             </section>
-
+            
             <section class="section">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Condition Specific Resources</h2>
+                    <h2 class="text-lg font-semibold text-primary">Condition Specific Resources</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
+                    <a href="/a-disorder/a-disorder.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Understanding Anxiety Disorders', 'Learn about symptoms, causes, and coping strategies for anxiety disorders in adults.')">
                         <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for articles -->
-                            <svg class="w-16 h-16 text-blue-400 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2-7H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V9a2 2 0 00-2-2zM4 6a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"></path>
-                            </svg>
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM5 10a1 1 0 011-1h4a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
                         </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Understanding Anxiety Disorders</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Learn about symptoms, causes, and coping strategies for anxiety disorders in adults.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Understanding Anxiety Disorders</h3>
+                            <p class="text-sm text-secondary mb-2">Learn about symptoms, causes, and coping strategies for anxiety disorders in adults.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
                                 <span class="mr-2">Article</span>
-                                <span class="mr-2">&bull;</span>
+                                <span class="mr-2">•</span>
                                 <span>10-minute read</span>
                             </div>
-                            <a href="anxiety disorder" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Read Article">Read</a>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Read Article">Read</span>
                         </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
+                    </a>
+                    <a href="muscle-relaxation.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Progressive Muscle Relaxation', 'A guided audio to release muscle tension and reduce anxiety.')">
                         <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for audio -->
-                            <svg class="w-16 h-16 text-teal-400 dark:text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v10a2 2 0 01-2 2h-6z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
-                            </svg>
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM5 10a1 1 0 011-1h4a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
                         </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Progressive Muscle Relaxation</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">A guided audio to release muscle tension and reduce anxiety.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Progressive Muscle Relaxation</h3>
+                            <p class="text-sm text-secondary mb-2">A guided audio to release muscle tension and reduce anxiety.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
                                 <span class="mr-2">Audio</span>
-                                <span class="mr-2">&bull;</span>
+                                <span class="mr-2">•</span>
                                 <span>15-minute listen</span>
                             </div>
-                            <a href="muscle-relaxation.html" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Play Audio">Play</a>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Play Audio">Play</span>
                         </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
-                        <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for video -->
-                            <svg class="w-16 h-16 text-purple-400 dark:text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14m-1-4v2a4 4 0 01-4 4H7a4 4 0 01-4-4v-2a4 4 0 014-4h2a4 4 0 014 4z"></path>
-                            </svg>
-                        </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Breathing Techniques for Panic Attacks</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">5-step guide with accompanying exercises to manage panic.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
-                                <span class="mr-2">Video</span>
-                                <span class="mr-2">&bull;</span>
-                                <span>8 minutes</span>
-                                <span class="mr-2">&bull;</span>
-                                <span>English</span>
-                            </div>
-                            <a href="/Panic-Attacks/p-attack.html" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Watch Video">Watch</a>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
-                        <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for PDF/document -->
-                            <svg class="w-16 h-16 text-pink-400 dark:text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5l8 8-8 8-8-8 8-8zM12 21V9.5m0 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path>
-                            </svg>
-                        </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Anxiety Tracking Worksheet</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Document thoughts, triggers, symptoms and effective coping strategies.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
-                                <span class="mr-2">PDF</span>
-                                <span class="mr-2">&bull;</span>
-                                <span>3 pages</span>
-                            </div>
-                            <a href="/Anxiety-Worksheet/anxiety-worksheet.html" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Download PDF">Download</a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
+                    <a href="/Low-Mood/low-mood.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Coping with Low Moods', 'Practical video guide on managing daily struggles with depression.')">
                         <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for video -->
-                            <svg class="w-16 h-16 text-red-400 dark:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14m-1-4v2a4 4 0 01-4 4H7a4 4 0 01-4-4v-2a4 4 0 014-4h2a4 4 0 014 4z"></path>
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8 13.91a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
                             </svg>
                         </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Coping with Low Moods</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Practical video guide on managing daily struggles with depression.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Coping with Low Moods</h3>
+                            <p class="text-sm text-secondary mb-2">Practical video guide on managing daily struggles with depression.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
                                 <span class="mr-2">Video</span>
-                                <span class="mr-2">&bull;</span>
+                                <span class="mr-2">•</span>
                                 <span>12 minutes</span>
                             </div>
-                            <a href="/Low-Mood/low-mood.html" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Watch Video: Coping">Watch</a>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Watch Video: Coping">Watch</span>
                         </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
+                    </a>
+                    <a href="depression-workbook.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Coping with Low Moods', 'Practical video guide on managing daily struggles with depression.')">
                         <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for PDF/document -->
-                            <svg class="w-16 h-16 text-yellow-400 dark:text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5l8 8-8 8-8-8 8-8zM12 21V9.5m0 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path>
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8 13.91a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
                             </svg>
                         </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Depression Workbook</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">A printable PDF with exercises and journal prompts for self-reflection.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Depression Workbook</h3>
+                            <p class="text-sm text-secondary mb-2">Practical workbook on managing daily struggles with depression.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
                                 <span class="mr-2">PDF</span>
-                                <span class="mr-2">&bull;</span>
-                                <span>10 pages</span>
+                                <span class="mr-2">•</span>
+                                <span>12 minutes</span>
                             </div>
-                            <a href="depression" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Download PDF: Depression Workbook">Download</a>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Watch Video: Coping">Solve</span>
                         </div>
-                    </div>
+                    </a>
+                    
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
+                    <a href="trigger-craving.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Triggers & Cravings', 'Learn to identify and manage triggers and cravings related to mental health.')">
                         <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for audio -->
-                            <svg class="w-16 h-16 text-orange-400 dark:text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v10a2 2 0 01-2 2h-6z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
-                            </svg>
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.785.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"></path></svg>
                         </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Sleep Meditation for Restful Nights</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">A guided session to calm your mind and body for deep sleep.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
-                                <span class="mr-2">Audio</span>
-                                <span class="mr-2">&bull;</span>
-                                <span>25 minutes</span>
-                            </div>
-                            <a href="sleep meditation" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Play Sleep Meditation">Play</a>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4">
-                        <div class="flex-shrink-0">
-                            <!-- New inline SVG icon for article -->
-                            <svg class="w-16 h-16 text-lime-400 dark:text-lime-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2-7H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V9a2 2 0 00-2-2zM4 6a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"></path>
-                            </svg>
-                        </div>
-                        <div class="mt-4 sm:mt-0">
-                            <h3 class="font-semibold text-lg mb-1 text-gray-800 dark:text-gray-100">Building a Healthy Sleep Routine</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Tips and strategies to improve sleep hygiene and overcome insomnia.</p>
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Triggers & Cravings</h3>
+                            <p class="text-sm text-secondary mb-2">Learn to identify and manage triggers and cravings related to mental health.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
                                 <span class="mr-2">Article</span>
-                                <span class="mr-2">&bull;</span>
+                                <span class="mr-2">•</span>
+                                <span>10-minute read</span>
+                            </div>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Read Article">Read</span>
+                        </div>
+                    </a>
+                    <a href="sleep-routine.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Building a Healthy Sleep Routine', 'Tips and strategies to improve sleep hygiene and overcome insomnia.')">
+                        <div class="flex-shrink-0">
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8 13.91a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Building a Healthy Sleep Routine</h3>
+                            <p class="text-sm text-secondary mb-2">Tips and strategies to improve sleep hygiene and overcome insomnia.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
+                                <span class="mr-2">Article</span>
+                                <span class="mr-2">•</span>
                                 <span>15-minute read</span>
                             </div>
-                            <a href="sleep-routine.html" class="action-button text-blue-600 dark:text-blue-400 font-medium text-sm hover:underline" data-action="Read Article: Sleep Routine">Read</a>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Read Article: Sleep Routine">Read</span>
                         </div>
-                    </div>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <a href="sleep-meditation.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Sleep Meditation', 'A guided session to calm your mind and body for deep sleep.')">
+                        <div class="flex-shrink-0">
+                               <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8 13.91a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                                </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Sleep Meditation</h3>
+                            <p class="text-sm text-secondary mb-2">A guided session to calm your mind and body for deep sleep.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
+                                <span class="mr-2">Audio</span>
+                                <span class="mr-2">•</span>
+                                <span>25 minutes</span>
+                            </div>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Play Sleep Meditation">Play</span>
+                        </div>
+                    </a>
+                    <a href="physical-exercise.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Physical Exercise', 'Simple desk exercises and stretches to stay active.')">
+                        <div class="flex-shrink-0">
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8 13.91a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Physical Exercise</h3>
+                            <p class="text-sm text-secondary mb-2">Simple desk exercises and stretches to stay active.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
+                                <span class="mr-2">Video</span>
+                                <span class="mr-2">•</span>
+                                <span>10-20 minutes</span>
+                            </div>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Start Physical Exercise">Start</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <a href="habit-tracker.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Habit Tracker', 'A simple tool to track and build positive habits.')">
+                        <div class="flex-shrink-0">
+                               <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8 13.91a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                                </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Habit Tracker</h3>
+                            <p class="text-sm text-secondary mb-2">Visually track your progress on new habits and goals.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
+                                <span class="mr-2">Interactive</span>
+                                <span class="mr-2">•</span>
+                                <span>Daily</span>
+                            </div>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Open Habit Tracker">Open</span>
+                        </div>
+                    </a>
+                    <a href="/Panic-Attacks/p-attack.html" class="bg-card p-6 rounded-2xl card-shadow flex flex-col sm:flex-row items-center space-x-4" onclick="goToOtherPage('Breathing Techniques for Panic Attacks', 'A 5-step guide to manage panic attacks.')">
+                        <div class="flex-shrink-0">
+                            <svg class="w-16 h-16 icon-color" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM5 10a1 1 0 011-1h4a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1 text-primary">Breathing Techniques for Panic Attacks</h3>
+                            <p class="text-sm text-secondary mb-2">A 5-step guide to manage panic attacks.</p>
+                            <div class="flex items-center text-sm text-secondary mb-2">
+                                <span class="mr-2">Video</span>
+                                <span class="mr-2">•</span>
+                                <span>8 minutes</span>
+                                <span class="mr-2">•</span>
+                                <span>English</span>
+                            </div>
+                            <span class="action-button text-primary font-medium text-sm hover:underline" data-action="Watch Video">Watch</span>
+                        </div>
+                    </a>
                 </div>
             </section>
         </main>
     </div>
 
-    <script src=resource-hub.js>
-        
+    <div id="other-page" class="page-content p-8">
+        <header class="flex items-center justify-between mb-8">
+            <h1 id="page-title" class="text-2xl font-bold text-primary">Page Title</h1>
+            <button id="back-button" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-primary px-4 py-2 rounded-full font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                Back
+            </button>
+        </header>
+        <p id="page-message" class="text-lg text-secondary mb-4"></p>
+        <p class="text-secondary">This is a placeholder page. Click 'Back' to return to the main resource hub.</p>
+    </div>
+
+    <script>
+        const mainPage = document.getElementById('main-page');
+        const otherPage = document.getElementById('other-page');
+        const pageTitle = document.getElementById('page-title');
+        const pageMessage = document.getElementById('page-message');
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const backButton = document.getElementById('back-button');
+
+        function setTheme(theme) {
+            document.body.classList.remove('light', 'dark');
+            document.body.classList.add(theme);
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                document.documentElement.classList.remove('dark');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(prefersDark ? 'dark' : 'light');
+        });
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+            setTheme(currentTheme);
+        });
+
+        function goToOtherPage(title, message) {
+            pageTitle.textContent = title;
+            pageMessage.textContent = message;
+            mainPage.classList.remove('active');
+            otherPage.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function goToMainPage() {
+            otherPage.classList.remove('active');
+            mainPage.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('a[href="javascript:void(0)"], .action-button').forEach(element => {
+            element.addEventListener('click', (event) => {
+                event.preventDefault();
+                const parentCard = event.target.closest('.card-shadow');
+                if (parentCard) {
+                    const titleElement = parentCard.querySelector('h3');
+                    const messageElement = parentCard.querySelector('p');
+                    if (titleElement && messageElement) {
+                        goToOtherPage(titleElement.textContent, messageElement.textContent);
+                    }
+                }
+            });
+        });
+
+        backButton.addEventListener('click', goToMainPage);
     </script>
 </body>
 </html>

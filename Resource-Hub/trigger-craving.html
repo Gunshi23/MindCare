@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Triggers and Cravings</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color-light: #f4f7f9;
+            --card-bg-light: #ffffff;
+            --text-color-light: #333333;
+            --secondary-text-light: #666666;
+            --border-color-light: #e0e0e0;
+            --primary-color: #6a4fe6;
+            --button-text-color: #ffffff;
+        }
+
+        body.dark-mode {
+            --bg-color-light: #1a1a2e;
+            --card-bg-light: #16213e;
+            --text-color-light: #e0e0e0;
+            --secondary-text-light: #b0b0b0;
+            --border-color-light: #3a3a5a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            overflow: auto;
+            padding: 20px;
+        }
+
+        .article-container {
+            background-color: var(--card-bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 95%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .article-header h1 {
+            color: var(--primary-color);
+            margin: 0 0 10px;
+            font-size: 2.5em;
+        }
+
+        .article-header p {
+            color: var(--secondary-text-light);
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .article-content {
+            line-height: 1.6;
+        }
+
+        .article-content h2 {
+            font-size: 1.8em;
+            color: var(--text-color-light);
+            margin-top: 30px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+        .article-content h3 {
+            font-size: 1.4em;
+            color: var(--text-color-light);
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .article-content blockquote {
+            font-style: italic;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 20px 0;
+            color: var(--secondary-text-light);
+        }
+        .article-content blockquote footer {
+            font-style: normal;
+            margin-top: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .article-content p {
+            margin: 0 0 15px 0;
+            color: var(--secondary-text-light);
+        }
+
+        .article-content ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+            color: var(--secondary-text-light);
+        }
+
+        .article-content ul li {
+            margin-bottom: 5px;
+        }
+
+        .cta-btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.1s;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            background-color: #5a3ce0;
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg-light);
+            border: 1px solid var(--border-color-light);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+            z-index: 101;
+        }
+
+        .theme-toggle .material-icons {
+            font-size: 24px;
+            color: var(--text-color-light);
+            transition: color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-color-light);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .article-container {
+                padding: 20px;
+            }
+            .article-header h1 {
+                font-size: 2em;
+            }
+            .article-content h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="article-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <div class="article-header">
+            <h1>Understanding Triggers and Cravings</h1>
+            <p>An article explaining how to identify and manage triggers in recovery</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Introduction</h2>
+            <p>
+                Recovery from addiction is a journey that involves more than just stopping a behavior or substance use. It’s about understanding the patterns that led to the addiction in the first place and developing new ways to cope with challenges.
+            </p>
+            <p>
+                One of the most important aspects of this process is recognizing and managing **triggers**—the cues that can spark powerful cravings and potentially lead to relapse. By learning to identify these triggers and respond effectively, you can take control of your recovery and build a healthier future.
+            </p>
+
+            <h2>What Are Triggers?</h2>
+            <p>
+                A trigger is anything that causes an emotional or psychological response linked to past addictive behavior. These responses can come on suddenly and feel overwhelming, often creating intense urges or cravings to return to old habits.
+            </p>
+            <blockquote>
+                “This reminds me of when I used to cope through unhealthy behavior.”
+                <footer>— A common thought when a trigger is encountered</footer>
+            </blockquote>
+            <p>
+                Being aware of your triggers doesn’t mean you’ll never face them—it means you’ll be better prepared to handle them in healthy, constructive ways.
+            </p>
+            
+            <h2>Two Main Types of Triggers</h2>
+            <h3>1. External Triggers</h3>
+            <p>
+                External triggers are environmental cues you can see, hear, or experience outside of yourself. They are usually easier to identify because they are tangible.
+            </p>
+            <ul>
+                <li><strong>People:</strong> Friends or acquaintances you previously engaged in addictive behavior with.</li>
+                <li><strong>Places:</strong> Certain neighborhoods, bars, or even workplaces connected to past use.</li>
+                <li><strong>Objects:</strong> Tools, substances, or paraphernalia associated with old habits.</li>
+                <li><strong>Time-related cues:</strong> Holidays, anniversaries, or specific times of day linked to substance use or behavior.</li>
+            </ul>
+            <p>
+                **Tip:** Avoiding high-risk environments early in recovery can reduce temptation and protect your progress.
+            </p>
+            <h3>2. Internal Triggers</h3>
+            <p>
+                Internal triggers originate from within you and are often emotional or mental in nature. These can be harder to recognize because they involve your thoughts and feelings.
+            </p>
+            <ul>
+                <li><strong>Emotions:</strong> Sadness, anger, boredom, loneliness, or even excitement.</li>
+                <li><strong>Physical sensations:</strong> Fatigue, hunger, pain, or illness.</li>
+                <li><strong>Thought patterns:</strong> Rationalizations like “just this once” or memories of past behavior.</li>
+            </ul>
+            <p>
+                **Tip:** Internal triggers often require self-reflection and coping techniques like journaling or mindfulness.
+            </p>
+
+            <h2>Identifying Your Personal Triggers</h2>
+            <p>
+                Recognizing your personal triggers is a crucial step in staying on track. One of the most effective tools for this is keeping a **trigger journal**. Each time you feel a craving, write down:
+            </p>
+            <ul>
+                <li>The time of day it occurred.</li>
+                <li>Where you were at the time.</li>
+                <li>Who you were with.</li>
+                <li>What you were doing before the craving started.</li>
+                <li>What you were feeling physically and emotionally.</li>
+            </ul>
+            <p>
+                Over time, this process will reveal patterns. This self-awareness allows you to prepare strategies ahead of time.
+            </p>
+
+            <h2>Coping With Cravings</h2>
+            <p>
+                Cravings can be intense, but they are temporary. Most cravings peak within 15–30 minutes, meaning if you can get through that window, the urge will naturally fade. Here are several proven techniques for managing cravings:
+            </p>
+            <ul>
+                <li><strong>Delay and Distract:</strong> Wait 10–15 minutes before acting on an urge. Engage in an activity that fully occupies your mind, like exercising, calling a friend, or working on a hobby.</li>
+                <li><strong>Deep Breathing:</strong> A simple breathing exercise can reduce stress and calm your nervous system. Inhale for 4 seconds, hold for 4, and exhale for 4. Repeat until you feel more centered.</li>
+                <li><strong>Visualization:</strong> Imagine yourself successfully overcoming the craving. Use this mental image to strengthen your resolve in the moment.</li>
+                <li><strong>Talk It Out:</strong> Call a trusted friend, sponsor, or therapist. Talking about your craving out loud reduces its power and helps you feel supported.</li>
+            </ul>
+
+            <h2>Building a Long-Term Plan</h2>
+            <p>
+                Recovery isn’t just about avoiding triggers—it’s about creating a sustainable lifestyle that supports your well-being. Consider incorporating these practices:
+            </p>
+            <ul>
+                <li>Build a support network: Surround yourself with people who encourage your recovery journey.</li>
+                <li>Create a structured routine: Plan your days to minimize downtime and uncertainty.</li>
+                <li>Focus on self-care: Eat well, get enough sleep, and exercise regularly to reduce vulnerability to cravings.</li>
+                <li>Set small, realistic goals: Celebrate progress, no matter how small, to stay motivated.</li>
+                <li>Seek professional help: Therapy and support groups can provide valuable tools and accountability.</li>
+            </ul>
+
+            <h2>When Relapse Happens</h2>
+            <p>
+                Relapse is a common part of the recovery journey. It’s not a sign of failure—it’s a signal that something in your plan needs adjustment. If you relapse:
+            </p>
+            <ul>
+                <li>Stay calm and compassionate with yourself.</li>
+                <li>Reach out for help immediately.</li>
+                <li>Analyze the situation: Identify what triggered the relapse.</li>
+                <li>Update your coping strategies to prevent a repeat.</li>
+                <li>Recommit to your recovery goals and keep moving forward.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>
+                Understanding triggers and cravings is an essential part of maintaining long-term sobriety. By identifying your personal triggers, practicing coping strategies, and building a strong support system, you can turn challenges into opportunities for growth.
+            </p>
+            <p>
+                Recovery is not about perfection—it’s about progress and resilience. Every time you face a trigger and make a healthy choice, you strengthen your future and take another step toward lasting freedom.
+            </p>
+        </div>
+        
+        <div class="cta-btn-container">
+            <a href="#" class="btn">
+                <span class="material-icons">arrow_back</span>
+                Back to Resources
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                if (savedTheme === 'dark-mode') {
+                    themeToggle.querySelector('.material-icons').textContent = 'light_mode';
+                }
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+                themeToggle.querySelector('.material-icons').textContent = body.classList.contains('dark-mode') ? 'light_mode' : 'brightness_2';
+            });
+        });
+    </script>
+</body>
+</html>

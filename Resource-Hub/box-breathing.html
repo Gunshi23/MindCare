@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Breathing</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color-light: #f4f7f9;
+            --card-bg-light: #ffffff;
+            --text-color-light: #333333;
+            --secondary-text-light: #666666;
+            --border-color-light: #e0e0e0;
+            --primary-color: #6a4fe6;
+            --button-text-color: #ffffff;
+            --box-color: #2196F3;
+        }
+
+        body.dark-mode {
+            --bg-color-light: #1a1a2e;
+            --card-bg-light: #16213e;
+            --text-color-light: #e0e0e0;
+            --secondary-text-light: #b0b0b0;
+            --border-color-light: #3a3a5a;
+            --box-color: #1E88E5;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .exercise-container {
+            background-color: var(--card-bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 95%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 2.2em;
+        }
+
+        p {
+            color: var(--secondary-text-light);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .breathing-box-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .breathing-box {
+            width: 100%;
+            height: 100%;
+            background-color: var(--box-color);
+            opacity: 0.8;
+            transform: scale(0.9);
+            box-shadow: 0 0 20px rgba(33, 150, 243, 0.5);
+            transition: transform 4s ease-in-out;
+        }
+
+        .breathing-text {
+            position: absolute;
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+            user-select: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breathing-timer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .breathing-timer.active {
+            opacity: 1;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.1s;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-text-light);
+        }
+        
+        .btn:hover {
+            background-color: #5a3ce0;
+        }
+        .btn-secondary:hover {
+            background-color: #555;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg-light);
+            border: 1px solid var(--border-color-light);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+            z-index: 101;
+        }
+        
+        .theme-toggle .material-icons {
+            font-size: 24px;
+            color: var(--text-color-light);
+            transition: color 0.3s;
+        }
+        .theme-toggle:hover {
+            background-color: var(--bg-color-light);
+            transform: scale(1.05);
+        }
+
+        .breathing-box.breathe-in {
+            transform: scale(1.1);
+            transition-duration: 4s;
+        }
+        .breathing-box.hold {
+            transform: scale(1.1);
+            transition-duration: 4s;
+        }
+        .breathing-box.breathe-out {
+            transform: scale(0.9);
+            transition-duration: 4s;
+        }
+        .breathing-box.pause-hold {
+            transform: scale(0.9);
+            transition-duration: 4s;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
+        <h1>Box Breathing</h1>
+        <p>A simple 3-minute exercise for a quick relief.</p>
+        
+        <div class="breathing-box-container">
+            <div class="breathing-box" id="breathingBox"></div>
+            <span class="breathing-text" id="breathingText"></span>
+            <div class="breathing-timer" id="breathingTimer"></div>
+        </div>
+        
+        <button class="btn" id="startBtn">
+            <span class="material-icons">play_arrow</span>
+            Start Exercise
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const breathingBox = document.getElementById('breathingBox');
+            const breathingText = document.getElementById('breathingText');
+            const breathingTimer = document.getElementById('breathingTimer');
+            const startBtn = document.getElementById('startBtn');
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            let isRunning = false;
+            let breathingInterval;
+            let timerInterval;
+
+            const totalExerciseTime = 180; // 3 minutes in seconds
+            let timeLeft = totalExerciseTime;
+            
+            const phases = [
+                { text: 'Inhale', duration: 4000, class: 'breathe-in' },
+                { text: 'Hold', duration: 4000, class: 'hold' },
+                { text: 'Exhale', duration: 4000, class: 'breathe-out' },
+                { text: 'Hold', duration: 4000, class: 'pause-hold' }
+            ];
+            let currentPhaseIndex = 0;
+
+            function updateTimer(durationInMs) {
+                let seconds = Math.ceil(durationInMs / 1000);
+                breathingTimer.classList.add('active');
+                breathingTimer.textContent = seconds;
+                timerInterval = setInterval(() => {
+                    seconds--;
+                    if (seconds >= 0) {
+                        breathingTimer.textContent = seconds;
+                    }
+                }, 1000);
+            }
+
+            function performBreathingCycle() {
+                if (!isRunning || timeLeft <= 0) return;
+
+                const currentPhase = phases[currentPhaseIndex];
+                breathingText.textContent = currentPhase.text;
+
+                breathingBox.classList.remove('breathe-in', 'hold', 'breathe-out', 'pause-hold');
+
+                clearInterval(timerInterval);
+                updateTimer(currentPhase.duration);
+
+                setTimeout(() => {
+                    breathingBox.classList.add(currentPhase.class);
+                }, 10);
+
+                breathingInterval = setTimeout(() => {
+                    currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+                    performBreathingCycle();
+                }, currentPhase.duration);
+            }
+
+            function startExercise() {
+                if (isRunning) return;
+                isRunning = true;
+                startBtn.innerHTML = `<span class="material-icons">pause</span> Pause`;
+                startBtn.classList.add('btn-secondary');
+                
+                timeLeft = totalExerciseTime;
+                
+                breathingBox.style.transform = 'scale(0.9)'; // Reset to initial state
+                
+                performBreathingCycle();
+                
+                const masterTimerInterval = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft <= 0) {
+                        clearInterval(masterTimerInterval);
+                        stopExercise();
+                        breathingText.textContent = "Complete!";
+                        setTimeout(() => {
+                            breathingText.textContent = '';
+                            breathingBox.classList.remove('breathe-in', 'hold', 'breathe-out', 'pause-hold');
+                            breathingBox.style.transform = 'scale(0.9)';
+                            startBtn.innerHTML = `<span class="material-icons">replay</span> Start Over`;
+                            startBtn.classList.remove('btn-secondary');
+                        }, 2000);
+                    }
+                }, 1000);
+            }
+
+            function stopExercise() {
+                isRunning = false;
+                clearTimeout(breathingInterval);
+                clearInterval(timerInterval);
+                breathingTimer.classList.remove('active');
+                breathingBox.classList.remove('breathe-in', 'hold', 'breathe-out', 'pause-hold');
+                breathingText.textContent = '';
+                breathingBox.style.transform = 'scale(0.9)';
+                startBtn.innerHTML = `<span class="material-icons">play_arrow</span> Start Exercise`;
+                startBtn.classList.remove('btn-secondary');
+            }
+
+            function toggleExercise() {
+                if (timeLeft <= 0) {
+                    // This is a restart
+                    stopExercise(); // Reset all states
+                    startExercise();
+                } else if (isRunning) {
+                    stopExercise();
+                } else {
+                    startExercise();
+                }
+            }
+            
+            // Theme toggle functionality
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                if (savedTheme === 'dark-mode') {
+                    themeToggle.querySelector('.material-icons').textContent = 'light_mode';
+                }
+            }
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+                themeToggle.querySelector('.material-icons').textContent = body.classList.contains('dark-mode') ? 'light_mode' : 'brightness_2';
+            });
+            
+            startBtn.addEventListener('click', toggleExercise);
+        });
+    </script>
+</body>
+</html>
