@@ -156,8 +156,21 @@ body {
     width: 100%;
     /* ... other styles */
 }
-}
 
+.crisis-support {
+    background-color: red;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    align-items: center;
+    color: white;
+}
+.crisis{
+    background-color: black;
+    color: white;
+    padding: 1%;
+}
 @media (max-width: 1024px) {
     .grid-container {
         grid-template-columns: 1fr;
