@@ -13,7 +13,7 @@
 
         body.dark-mode {
             /* Dark Mode Colors */
-            --bg-color-light: #1a202c;
+            --bg-color-light: black;
             --card-bg-light: #2d3748;
             --text-color-light: #bb86fc;
             --header-bg-light: #2d3748;
@@ -149,7 +149,8 @@
         .grid-container {
             display: grid;
             gap: 20px;
-            grid-template-columns: 2fr 1fr;
+           
+            width: 100%;
         }
 
         @media (max-width: 768px) {
@@ -189,6 +190,7 @@
             text-decoration: none;
             color: inherit;
             transition: all 0.3s ease;
+            background-color: black;
         }
 
         .action-item:hover {
@@ -236,6 +238,8 @@
             border-radius: 10px;
             border: 1px solid var(--border-color-light);
             margin-bottom: 15px;
+            background-color: black;
+            color: white;
         }
 
         .coping-activity button {
