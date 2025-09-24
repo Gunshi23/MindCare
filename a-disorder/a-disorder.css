@@ -2,10 +2,10 @@
 :root {
     --bg-color-light: #f9f9f9;
     --card-bg-light: #ffffff;
-    --text-color-light: #2c3e50;
-    --secondary-text-light: #7f8c8d;
+    --text-color-light: #fdaaaa;
+    --secondary-text-light: black;
     --border-color-light: #ecf0f1;
-    --primary-color: #3498db;
+    --primary-color: #fdaaaa;
     --button-text-color: #ffffff;
     --shadow: rgba(0, 0, 0, 0.1);
 }
@@ -13,10 +13,10 @@
 body.dark-mode {
     --bg-color-light: #1d1e22;
     --card-bg-light: #2c3e50;
-    --text-color-light: #ecf0f1;
-    --secondary-text-light: #bdc3c7;
-    --border-color-light: #3a3a5a;
-    --primary-color: #5d9cec;
+    --text-color-light: #bd86fc;
+    --secondary-text-light: white;
+    --border-color-light: #bd86fc;
+    --primary-color: #bd86fc;
     --shadow: rgba(0, 0, 0, 0.4);
 }
 
@@ -110,7 +110,21 @@ body {
     text-align: center;
     margin-top: 40px;
 }
-
+.crisis-support {
+    background-color: red;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    align-items: center;
+    color: white;
+}
+.crisis{
+    background-color: white;
+    color: black;
+    border-radius: 5%;
+    padding: 1%;
+}
 .btn {
     padding: 12px 25px;
     border: none;

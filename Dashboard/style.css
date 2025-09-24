@@ -167,8 +167,9 @@ body {
     color: white;
 }
 .crisis{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
+    border-radius: 5%;
     padding: 1%;
 }
 @media (max-width: 1024px) {
