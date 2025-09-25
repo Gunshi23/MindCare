@@ -2,7 +2,7 @@
     --bg-color: #f0e9ff;
     --text-color: #1f2937;
     --main-bg: rgba(255, 255, 255, 0.9);
-    --btn-bg: #6d28d9;
+    --btn-bg: #fdaaaa;
     --btn-hover-bg: #7c3aed;
     --card-shadow: rgba(0,0,0,0.1);
 }
@@ -11,7 +11,7 @@ body.dark-theme {
     --bg-color: #1a202c;
     --text-color: #f3f4f6;
     --main-bg: rgba(45, 55, 72, 0.9);
-    --btn-bg: #8b5cf6;
+    --btn-bg: #bd86fc;
     --btn-hover-bg: #a78bfa;
     --card-shadow: rgba(0,0,0,0.4);
 }
