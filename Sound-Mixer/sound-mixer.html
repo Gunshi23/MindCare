@@ -5,320 +5,346 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calming Sound Mixer</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
     <style>
         :root {
-            --background-color: #121212;
-            --text-color: #e0e0e0;
-            --card-background: #1e1e1e;
-            --brand-color: #8b5cf6;
-            --shadow-color: rgba(0, 0, 0, 0.6);
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg-color-light: #f4f7f9;
+            --card-bg-light: #ffffff;
+            --text-color-light: #333333;
+            --secondary-text-light: #666666;
+            --primary-color: #fdaaaa;
+            --border-color-light: #fdaaaa;
+            --button-text-color: #ffffff;
+            --slider-track: #e0e0e0;
+            --slider-thumb: var(--primary-color);
         }
+
+        body.dark-mode {
+            --bg-color-light: black;
+            --card-bg-light: #6e4e93ff;
+            --text-color-light: white;
+            --secondary-text-light: white;
+            --border-color-light: #bd86fc;
+            --slider-track: #3a3a5a;
+            --slider-thumb: var(--primary-color);
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            text-align: center;
-            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            overflow: hidden;
         }
+
         .sound-mixer-container {
-            background-color: var(--card-background);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 40px var(--shadow-color);
-            max-width: 90%;
-            width: 600px;
-            border: 1px solid var(--border-color);
+            background-color: var(--card-bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 95%;
+            max-width: 600px;
+            position: relative;
         }
+
         h1 {
-            font-size: 2.8em;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--brand-color);
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 2.2em;
         }
+
         p {
+            color: var(--secondary-text-light);
+            margin-bottom: 20px;
+            text-align: center;
             font-size: 1.1em;
-            opacity: 0.7;
-            margin-bottom: 30px;
         }
+        
         .sound-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-bottom: 30px;
+            gap: 20px;
             width: 100%;
+            margin-bottom: 20px;
         }
+
         .sound-item {
-            background-color: #282828;
-            padding: 25px;
-            border-radius: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid var(--border-color);
+            padding: 15px;
+            background-color: var(--bg-color-light);
+            border-radius: 12px;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
+
         .sound-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
         }
+
         .sound-item .material-icons {
-            font-size: 3.5em;
-            color: var(--brand-color);
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
+
         .sound-item h3 {
-            margin: 15px 0;
-            font-weight: 500;
-            font-size: 1.3em;
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            color: var(--text-color-light);
         }
+        
         .volume-controls {
+            width: 80%;
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
             width: 100%;
-        }
-        .volume-controls input[type="range"] {
-            -webkit-appearance: none;
-            flex-grow: 1;
-            height: 6px;
-            background: #444;
-            border-radius: 3px;
+            height: 8px;
+            background: var(--slider-track);
+            outline: none;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background 0.2s;
         }
-        .volume-controls input[type="range"]::-webkit-slider-thumb {
+
+        input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            background: var(--brand-color);
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--slider-thumb);
             border-radius: 50%;
-            box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
-            transition: background-color 0.2s;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            transition: background 0.2s;
         }
+
         .play-pause-btn {
-            background-color: var(--brand-color);
+            background-color: var(--primary-color);
+            color: var(--button-text-color);
             border: none;
-            color: white;
-            padding: 20px;
             border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            width: 70px;
-            height: 70px;
-            box-shadow: 0 8px 25px var(--shadow-color);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 20px;
         }
-        .play-pause-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 30px var(--shadow-color);
-        }
+        
         .play-pause-btn .material-icons {
             font-size: 2.5em;
         }
-        .resources-section {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-            width: 100%;
+
+        .play-pause-btn:hover {
+            background-color: black;
         }
-        .resources-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .resources-list a {
-            color: var(--text-color);
-            text-decoration: none;
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg-light);
+            border: 1px solid var(--secondary-text-light);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            background-color: #282828;
-            padding: 12px 20px;
-            border-radius: 25px;
-            transition: background-color 0.2s, color 0.2s;
-            font-weight: 500;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+            z-index: 101;
         }
-        .resources-list a:hover {
-            background-color: var(--brand-color);
-            color: #fff;
+        
+        .theme-toggle .material-icons {
+            font-size: 24px;
+            color: var(--text-color-light);
+            transition: color 0.3s;
         }
-        /* Responsive design */
+
+        .theme-toggle:hover {
+            background-color: var(--bg-color-light);
+            transform: scale(1.05);
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 600px) {
             .sound-mixer-container {
                 padding: 20px;
             }
+            h1 {
+                font-size: 1.8em;
+            }
             .sound-list {
                 grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            .sound-item {
-                padding: 20px;
-            }
-            .sound-item h3 {
-                font-size: 1.1em;
             }
         }
     </style>
 </head>
 <body>
     <div class="sound-mixer-container">
+        <button id="theme-toggle" class="theme-toggle">
+            <span class="material-icons">brightness_2</span>
+        </button>
+
         <h1>Sound Mixer</h1>
         <p>Create a personalized soundscape for relaxation or focus.</p>
 
         <div class="sound-list">
-            <div class="sound-item" data-sound="rain">
+            <div class="sound-item">
                 <span class="material-icons">thunderstorm</span>
                 <h3>Rain</h3>
                 <div class="volume-controls">
                     <span class="material-icons">volume_off</span>
-                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <input type="range" min="0" max="1" value="0.5" step="0.01" data-sound="rain">
                     <span class="material-icons">volume_up</span>
                 </div>
+                <audio id="audio-rain" loop>
+                    <source src="/assets/rain.mp3" type="audio/mpeg">
+                </audio>
             </div>
 
-            <div class="sound-item" data-sound="fireplace">
+            <div class="sound-item">
                 <span class="material-icons">local_fire_department</span>
                 <h3>Fireplace</h3>
                 <div class="volume-controls">
                     <span class="material-icons">volume_off</span>
-                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <input type="range" min="0" max="1" value="0.5" step="0.01" data-sound="fireplace">
                     <span class="material-icons">volume_up</span>
                 </div>
+                <audio id="audio-fireplace" loop>
+                    <source src="/assets/fireplace.mp3" type="audio/mpeg">
+                </audio>
             </div>
 
-            <div class="sound-item" data-sound="forest">
+            <div class="sound-item">
                 <span class="material-icons">forest</span>
                 <h3>Forest</h3>
                 <div class="volume-controls">
                     <span class="material-icons">volume_off</span>
-                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <input type="range" min="0" max="1" value="0.5" step="0.01" data-sound="forest">
                     <span class="material-icons">volume_up</span>
                 </div>
+                <audio id="audio-forest" loop>
+                    <source src="/assets/forest.mp3" type="audio/mpeg">
+                </audio>
             </div>
 
-            <div class="sound-item" data-sound="ocean">
+            <div class="sound-item">
                 <span class="material-icons">waves</span>
                 <h3>Ocean</h3>
                 <div class="volume-controls">
                     <span class="material-icons">volume_off</span>
-                    <input type="range" min="0" max="1" value="0" step="0.01">
+                    <input type="range" min="0" max="1" value="0.5" step="0.01" data-sound="ocean">
                     <span class="material-icons">volume_up</span>
                 </div>
+                <audio id="audio-ocean" loop>
+                    <source src="/assets/ocean.mp3" type="audio/mpeg">
+                </audio>
             </div>
         </div>
         
         <button class="play-pause-btn" id="masterPlayPause">
             <span class="material-icons">play_arrow</span>
         </button>
-
-        <div class="resources-section">
-            <h3>Explore More Games</h3>
-            <ul class="resources-list">
-                <li><a href="/Breathing-Animation/breathing-animation.html"><span class="material-icons">self_improvement</span>Breathing Guide</a></li>
-                <li><a href="/Doodle-Pad/doodle-pad.html"><span class="material-icons">brush</span>Doodle Pad</a></li>
-                <li><a href="/Memory-Match/memory-match.html"><span class="material-icons">memory</span>Memory Match</a></li>
-                <li><a href="word-search.html"><span class="material-icons">search</span>Word Search</a></li>
-                <li><a href="/2048/2048.html"><span class="material-icons">grid_on</span>2048 Game</a></li>
-            </ul>
-        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const soundSources = {
-                rain: '/assets/rain.mp3',
-                fireplace: '/assets/fireplace.mp3',
-                forest: '/assets/forest.mp3',
-                ocean: '/assets/ocean.mp3'
+            const masterPlayPauseBtn = document.getElementById('masterPlayPause');
+            const soundItems = document.querySelectorAll('.sound-item');
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            let isPlaying = false;
+            let firstInteraction = false;
+
+            // Theme Toggle Logic
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                if (savedTheme === 'dark-mode') {
+                    themeToggle.querySelector('.material-icons').textContent = 'light_mode';
+                }
+            }
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode');
+                themeToggle.querySelector('.material-icons').textContent = body.classList.contains('dark-mode') ? 'light_mode' : 'brightness_2';
+            });
+
+            // Play/Pause and Volume Control Logic
+            const playAudio = (audio, volume) => {
+                if (!firstInteraction) {
+                    // Mute and play all audio files on the first interaction to "unlock" them
+                    soundItems.forEach(item => {
+                        const audioToUnlock = item.querySelector('audio');
+                        audioToUnlock.muted = true;
+                        audioToUnlock.play().catch(e => console.error("Audio play failed:", e));
+                    });
+                    firstInteraction = true;
+                    // Then unmute after a short delay
+                    setTimeout(() => {
+                        soundItems.forEach(item => {
+                            item.querySelector('audio').muted = false;
+                        });
+                    }, 50);
+                }
+                
+                audio.volume = volume;
+                if (volume > 0) {
+                    audio.play().catch(e => console.error("Audio play failed:", e));
+                } else {
+                    audio.pause();
+                }
             };
 
-            const players = {};
-            let isPlaying = false;
-            const playPauseBtn = document.getElementById('masterPlayPause');
-            const playPauseIcon = playPauseBtn.querySelector('.material-icons');
-
-            // Initialize all players
-            for (const sound in soundSources) {
-                players[sound] = new Tone.Player({
-                    url: soundSources[sound],
-                    loop: true,
-                    autostart: false
-                }).toDestination();
-            }
-
-            const soundItems = document.querySelectorAll('.sound-item');
-            soundItems.forEach(item => {
-                const soundName = item.dataset.sound;
-                const volumeSlider = item.querySelector('input[type="range"]');
-
-                // Update volume based on slider input
-                volumeSlider.addEventListener('input', (e) => {
-                    const volumeValue = e.target.value;
-                    players[soundName].volume.value = Tone.gainToDb(volumeValue);
-                    if (volumeValue > 0 && !isPlaying) {
-                        playAll();
-                    }
-                    if (volumeValue == 0 && isPlaying && allVolumesZero()) {
-                        pauseAll();
-                    }
-                });
-            });
-
-            // Master play/pause button logic
-            playPauseBtn.addEventListener('click', async () => {
-                if (!isPlaying) {
-                    await Tone.start();
-                    playAll();
+            masterPlayPauseBtn.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+                if (isPlaying) {
+                    masterPlayPauseBtn.querySelector('.material-icons').textContent = 'pause';
+                    soundItems.forEach(item => {
+                        const audio = item.querySelector('audio');
+                        const range = item.querySelector('input[type="range"]');
+                        playAudio(audio, range.value);
+                    });
                 } else {
-                    pauseAll();
+                    masterPlayPauseBtn.querySelector('.material-icons').textContent = 'play_arrow';
+                    soundItems.forEach(item => {
+                        item.querySelector('audio').pause();
+                    });
                 }
             });
 
-            function playAll() {
-                playPauseIcon.textContent = 'pause';
-                isPlaying = true;
-                for (const sound in players) {
-                    // Check if player is loaded and volume is not zero before starting
-                    const volumeSlider = document.querySelector(`.sound-item[data-sound="${sound}"] input[type="range"]`);
-                    if (volumeSlider.value > 0) {
-                        players[sound].start();
-                    }
-                }
-            }
+            soundItems.forEach(item => {
+                const audio = item.querySelector('audio');
+                const range = item.querySelector('input[type="range"]');
 
-            function pauseAll() {
-                playPauseIcon.textContent = 'play_arrow';
-                isPlaying = false;
-                for (const sound in players) {
-                    players[sound].stop();
-                }
-            }
+                audio.volume = range.value;
 
-            function allVolumesZero() {
-                let allZero = true;
-                soundItems.forEach(item => {
-                    const volumeSlider = item.querySelector('input[type="range"]');
-                    if (volumeSlider.value > 0) {
-                        allZero = false;
+                range.addEventListener('input', (e) => {
+                    if (isPlaying) {
+                        playAudio(audio, e.target.value);
                     }
                 });
-                return allZero;
-            }
+            });
         });
     </script>
 </body>
