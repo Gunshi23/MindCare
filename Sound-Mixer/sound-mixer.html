@@ -6,14 +6,177 @@
     <title>Calming Sound Mixer</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
-    <link rel="stylesheet" type="" href="sound-mixer.css">
+    <style>
+        :root {
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --card-background: #1e1e1e;
+            --brand-color: #8b5cf6;
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        .sound-mixer-container {
+            background-color: var(--card-background);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px var(--shadow-color);
+            max-width: 90%;
+            width: 600px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--brand-color);
+        }
+        p {
+            font-size: 1.1em;
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+        .sound-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .sound-item {
+            background-color: #282828;
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+        .sound-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .sound-item .material-icons {
+            font-size: 3.5em;
+            color: var(--brand-color);
+        }
+        .sound-item h3 {
+            margin: 15px 0;
+            font-weight: 500;
+            font-size: 1.3em;
+        }
+        .volume-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+        .volume-controls input[type="range"] {
+            -webkit-appearance: none;
+            flex-grow: 1;
+            height: 6px;
+            background: #444;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .volume-controls input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--brand-color);
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+            transition: background-color 0.2s;
+        }
+        .play-pause-btn {
+            background-color: var(--brand-color);
+            border: none;
+            color: white;
+            padding: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 70px;
+            height: 70px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
+        }
+        .play-pause-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px var(--shadow-color);
+        }
+        .play-pause-btn .material-icons {
+            font-size: 2.5em;
+        }
+        .resources-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+        .resources-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .resources-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #282828;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: background-color 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+        .resources-list a:hover {
+            background-color: var(--brand-color);
+            color: #fff;
+        }
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .sound-mixer-container {
+                padding: 20px;
+            }
+            .sound-list {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .sound-item {
+                padding: 20px;
+            }
+            .sound-item h3 {
+                font-size: 1.1em;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="sound-mixer-container">
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-            <span class="material-icons">brightness_2</span>
-        </button>
-
         <h1>Sound Mixer</h1>
         <p>Create a personalized soundscape for relaxation or focus.</p>
 
@@ -26,7 +189,6 @@
                     <input type="range" min="0" max="1" value="0" step="0.01">
                     <span class="material-icons">volume_up</span>
                 </div>
-                <audio id="audio-rain" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/rain-sfx.mp3" preload="auto"></audio>
             </div>
 
             <div class="sound-item" data-sound="fireplace">
@@ -37,7 +199,6 @@
                     <input type="range" min="0" max="1" value="0" step="0.01">
                     <span class="material-icons">volume_up</span>
                 </div>
-                <audio id="audio-fireplace" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/fireplace-sfx.mp3" preload="auto"></audio>
             </div>
 
             <div class="sound-item" data-sound="forest">
@@ -48,7 +209,6 @@
                     <input type="range" min="0" max="1" value="0" step="0.01">
                     <span class="material-icons">volume_up</span>
                 </div>
-                <audio id="audio-forest" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/forest-sfx.mp3" preload="auto"></audio>
             </div>
 
             <div class="sound-item" data-sound="ocean">
@@ -59,7 +219,6 @@
                     <input type="range" min="0" max="1" value="0" step="0.01">
                     <span class="material-icons">volume_up</span>
                 </div>
-                <audio id="audio-ocean" loop src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/33215/ocean-sfx.mp3" preload="auto"></audio>
             </div>
         </div>
         
@@ -70,17 +229,97 @@
         <div class="resources-section">
             <h3>Explore More Games</h3>
             <ul class="resources-list">
-                <li><a href="breathing.html"><span class="material-icons">self_improvement</span>Breathing Guide</a></li>
-                <li><a href="doodling-pad.html"><span class="material-icons">brush</span>Doodle Pad</a></li>
-                <li><a href="memory-puzzle.html"><span class="material-icons">memory</span>Memory Match</a></li>
+                <li><a href="/Breathing-Animation/breathing-animation.html"><span class="material-icons">self_improvement</span>Breathing Guide</a></li>
+                <li><a href="/Doodle-Pad/doodle-pad.html"><span class="material-icons">brush</span>Doodle Pad</a></li>
+                <li><a href="/Memory-Match/memory-match.html"><span class="material-icons">memory</span>Memory Match</a></li>
                 <li><a href="word-search.html"><span class="material-icons">search</span>Word Search</a></li>
-                <li><a href="2048.html"><span class="material-icons">grid_on</span>2048 Game</a></li>
+                <li><a href="/2048/2048.html"><span class="material-icons">grid_on</span>2048 Game</a></li>
             </ul>
         </div>
     </div>
 
-    <script src="sound-mixer.js">
-       
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const soundSources = {
+                rain: '/assets/rain.mp3',
+                fireplace: '/assets/fireplace.mp3',
+                forest: '/assets/forest.mp3',
+                ocean: '/assets/ocean.mp3'
+            };
+
+            const players = {};
+            let isPlaying = false;
+            const playPauseBtn = document.getElementById('masterPlayPause');
+            const playPauseIcon = playPauseBtn.querySelector('.material-icons');
+
+            // Initialize all players
+            for (const sound in soundSources) {
+                players[sound] = new Tone.Player({
+                    url: soundSources[sound],
+                    loop: true,
+                    autostart: false
+                }).toDestination();
+            }
+
+            const soundItems = document.querySelectorAll('.sound-item');
+            soundItems.forEach(item => {
+                const soundName = item.dataset.sound;
+                const volumeSlider = item.querySelector('input[type="range"]');
+
+                // Update volume based on slider input
+                volumeSlider.addEventListener('input', (e) => {
+                    const volumeValue = e.target.value;
+                    players[soundName].volume.value = Tone.gainToDb(volumeValue);
+                    if (volumeValue > 0 && !isPlaying) {
+                        playAll();
+                    }
+                    if (volumeValue == 0 && isPlaying && allVolumesZero()) {
+                        pauseAll();
+                    }
+                });
+            });
+
+            // Master play/pause button logic
+            playPauseBtn.addEventListener('click', async () => {
+                if (!isPlaying) {
+                    await Tone.start();
+                    playAll();
+                } else {
+                    pauseAll();
+                }
+            });
+
+            function playAll() {
+                playPauseIcon.textContent = 'pause';
+                isPlaying = true;
+                for (const sound in players) {
+                    // Check if player is loaded and volume is not zero before starting
+                    const volumeSlider = document.querySelector(`.sound-item[data-sound="${sound}"] input[type="range"]`);
+                    if (volumeSlider.value > 0) {
+                        players[sound].start();
+                    }
+                }
+            }
+
+            function pauseAll() {
+                playPauseIcon.textContent = 'play_arrow';
+                isPlaying = false;
+                for (const sound in players) {
+                    players[sound].stop();
+                }
+            }
+
+            function allVolumesZero() {
+                let allZero = true;
+                soundItems.forEach(item => {
+                    const volumeSlider = item.querySelector('input[type="range"]');
+                    if (volumeSlider.value > 0) {
+                        allZero = false;
+                    }
+                });
+                return allZero;
+            }
+        });
     </script>
 </body>
 </html>

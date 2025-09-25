@@ -6,25 +6,793 @@
     <title>MindCare - College Mental Wellness</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="" href="style.css">
-    
+    <style>
+        :root {
+            /* Dark Theme Variables */
+            --bg-color-dark: #000000;
+            --text-color-dark: #E0E0E0;
+            --brand-color-dark: #BB86FC;
+            --container-bg-dark: #1C1C1C;
+            --card-bg-dark: #282828;
+            --shadow-color-dark: rgba(0, 0, 0, 0.6);
+            --border-color-dark: #333333;
+            --link-color-dark: #BB86FC;
+            --accent-bg-dark: #101010;
+            --faq-header-bg-dark: #202020;
+            --hero-text-color-dark: #FFFFFF;
+
+            /* Light Theme Variables */
+            --bg-color-light: #FFFFFF;
+            --text-color-light: #333333;
+            --brand-color-light: #FDAAAA;
+            --container-bg-light: white;
+            --card-bg-light: #FFFFFF;
+            --shadow-color-light: rgba(0, 0, 0, 0.15);
+            --border-color-light: #FDAAAA;
+            --link-color-light: #FDAAAA;
+            --accent-bg-light: #F0F0F0;
+            --faq-header-bg-light: #FDFDFD;
+            --hero-text-color-light: #333333;
+
+            /* Active Theme Variables - Default to Dark */
+            --bg-color: var(--bg-color-dark);
+            --text-color: var(--text-color-dark);
+            --brand-color: var(--brand-color-dark);
+            --container-bg: var(--container-bg-dark);
+            --card-bg: var(--card-bg-dark);
+            --shadow-color: var(--shadow-color-dark);
+            --border-color: var(--border-color-dark);
+            --link-color: var(--link-color-dark);
+            --accent-bg: var(--accent-bg-dark);
+            --faq-header-bg: var(--faq-header-bg-dark);
+            --hero-text-color: var(--hero-text-color-dark);
+        }
+
+        /* Light Theme Activation */
+        body.light-theme {
+            --bg-color: var(--bg-color-light);
+            --text-color: var(--text-color-light);
+            --brand-color: var(--brand-color-light);
+            --container-bg: var(--container-bg-light);
+            --card-bg: var(--card-bg-light);
+            --shadow-color: var(--shadow-color-light);
+            --border-color: var(--border-color-light);
+            --link-color: var(--link-color-light);
+            --accent-bg: var(--accent-bg-light);
+            --faq-header-bg: var(--faq-header-bg-light);
+            --hero-text-color: var(--hero-text-color-light);
+        }
+
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            position: relative;
+            z-index: 0;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+            padding: 25px;
+            background-image: radial-gradient(circle at 1% 1%, var(--border-color) 1px, transparent 0%),
+                                radial-gradient(circle at 99% 99%, var(--border-color) 1px, transparent 0%);
+            background-size: 80px 80px;
+            background-repeat: no-repeat;
+            background-position: top left, bottom right;
+            border-radius: 0;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            background-color: var(--container-bg);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .logo img {
+            height: 90px;
+            width: 150px;
+        }
+
+        .nav{
+            background-color: var(--container-bg-dark);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--brand-color);
+        }
+        
+        .hero {
+            background-image: url('/assets/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 40px;
+            position: relative;
+            
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            border-radius: 15px;
+            z-index: 1;
+        }
+
+        .light-theme .hero::before {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .hero h1, .hero p, .hero-btn {
+            position: relative;
+            z-index: 2;
+            color: var(--hero-text-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--hero-text-color);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        .light-theme .hero h1 {
+            text-shadow: 0 2px 5px rgba(255,255,255,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: var(--hero-text-color);
+        }
+
+        .hero-btn {
+            background-color: var(--brand-color);
+            color: #FFFFFF;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            background-image: linear-gradient(45deg, var(--brand-color), #8B43B2);
+            background-size: 200% 100%;
+            transition: background-position 0.5s ease, box-shadow 0.3s ease;
+        }
+        
+        .hero-btn:hover {
+            background-position: 100% 0;
+            box-shadow: 0 8px 15px var(--shadow-color);
+        }
+        
+        /* New blog section styles */
+        .blogs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .blog-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+        
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .blog-content p {
+            font-size: 0.9em;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            color: var(--brand-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .read-more:hover {
+            opacity: 0.7;
+        }
+        
+        /* New stats section styles */
+        .stats {
+            padding: 60px 0;
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(20px); /* Initially moved down */
+            transition: opacity 1s ease, transform 1s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        /* New grid layout for stats section */
+        .stats-grid-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        .stats-row img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: transform 0.3s ease;
+            max-width: 600px;
+        }
+        .stats-row img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Specific row layouts */
+        .stats-row.three-charts img {
+            width: calc(33.33% - 14px);
+            max-width: none;
+        }
+        .stats-row.two-charts img {
+            width: calc(50% - 10px);
+            max-width: none;
+        }
+
+        /* Common section styling */
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        
+        .features, .how-it-works, .for-institutions, .stats, .testimonials, .faq, .blogs, .mind-notes-section {
+            padding: 60px 0;
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(20px); /* Initially moved down */
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .features.fade-in, .how-it-works.fade-in, .for-institutions.fade-in, .stats.fade-in, .testimonials.fade-in, .faq.fade-in, .blogs.fade-in, .mind-notes-section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        @media (min-width: 900px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .team-member {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px var(--shadow-color);
+        }
+
+        .team-member-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--accent-bg);
+            margin: 0 auto 15px;
+            border: 3px solid var(--brand-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member:hover .team-member-img {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--brand-color);
+        }
+
+        .team-member-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .team-member h4 {
+            font-size: 1.2em;
+            margin: 0 0 5px;
+            color: var(--brand-color);
+        }
+
+        .team-member p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin: 0;
+        }
+        
+        .how-it-works {
+            text-align: center;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .step-item {
+            padding: 20px;
+            border: 2px solid var(--brand-color);
+            border-radius: 15px;
+            position: relative;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 10px var(--shadow-color);
+        }
+        
+        .step-item:not(:last-child)::after {
+            content: "\f061";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--brand-color);
+            font-size: 1.5em;
+        }
+
+        @media (max-width: 900px) {
+            .step-item:not(:last-child)::after {
+                display: none;
+            }
+        }
+        
+        .step-item h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        
+        .for-institutions {
+            text-align: center;
+        }
+
+        .institutions-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .institutions-content p {
+            max-width: 700px;
+            margin: 0;
+        }
+        
+        .contact-btn {
+            background-color: var(--brand-color);
+            color: #FFFFFF;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--container-bg);
+            color: var(--brand-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-card i {
+            font-size: 3em;
+            color: var(--brand-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials Section */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            border-left: 5px solid var(--brand-color);
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin: 0 0 20px 0;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .testimonial-role {
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        
+        /* FAQ Section */
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1em;
+            background-color: var(--faq-header-bg);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--accent-bg);
+        }
+
+        .faq-question .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            line-height: 1.5;
+            background-color: transparent; /* Default transparent background */
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+            background-color: var(--accent-bg); /* Color for expanded answer */
+        }
+
+        .faq-item.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            opacity: 0.8;
+            font-size: 0.9em;
+            margin-top: 40px;
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            box-shadow: 0 -5px 15px var(--shadow-color);
+        }
+
+        footer a {
+            color: var(--link-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: none;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+            z-index: 10;
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .stats-grid, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                padding-bottom: 0;
+            }
+            nav {
+                margin-top: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a {
+                margin: 5px 10px;
+            }
+            .step-item:not(:last-child)::after {
+                display: none;
+            }
+        }
+        
+        /* Mind Notes Section Styles */
+        .mind-notes-container {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .mind-notes-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            color: var(--text-color);
+            margin-bottom: 80px;
+            font-weight: normal;
+        }
+
+        .mind-notes-subtitle {
+            font-size: 20px;
+            color: var(--text-color);
+            margin-bottom: 40px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .mind-notes-card {
+            background: linear-gradient(135deg, var(--brand-color-dark), var(--card-bg-dark));
+            border-radius: 25px;
+            padding: 25px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            text-align: left;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--brand-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .light-theme .mind-notes-card {
+            background: linear-gradient(135deg, rgba(253, 170, 170, 0.4), var(--card-bg-light));
+        }
+        
+        .mind-notes-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .mind-notes-card-number {
+            font-weight: 600;
+            color: black;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo"><img src="/assets/finallogo.png" style="height: 50px;"></div>
+            <div class="logo">
+                <img src="/assets/finallogo.png" alt="MindCare Logo">
+            </div>
             <nav>
                 <a href="#">Home</a>
+                <a href="#mind-notes">Mind Notes</a>
+                <a href="#blogs">Blogs</a>
+                <a href="#stats">Statistics</a>
                 <a href="#features">Features</a>
-                <a href="#team">Our Team</a>
+                <a href="#how-it-works">How It Works</a>
                 <a href="#testimonials">Testimonials</a>
             </nav>
         </header>
 
         <section class="hero">
             <h1>Mental Wellness, Built for the Student.</h1>
-            <p>A structured, stigma-free platform connecting students in rural and semi-urban colleges with the mental health support they need, when they need it.</p>
+            <p>Your space for a healthier mind and a brighter future.</p>
             <a href="/Login/login.html" class="hero-btn">Get Started</a>
+        </section>
+        
+        
+            <h2 class="section-title">Your Personal Wellness Guide</h2>
+            <p class="mind-notes-subtitle">Explore a collection of mini-guides and daily reflections designed to help you navigate college life. Choose the one that resonates with you today.</p>
+            <div class="mind-notes-container">
+                <div class="mind-notes-card">
+                    <span class="mind-notes-card-number">Understanding Yourself</span> Discover where you're at on your wellness journey with guided reflections and self-assessments.
+                </div>
+                
+                <div class="mind-notes-card">
+                    <span class="mind-notes-card-number">Navigating Challenges</span> Find tools and resources to help you manage difficult feelings and move past obstacles.
+                </div>
+                
+                <div class="mind-notes-card">
+                    <span class="mind-notes-card-number">Building Resilience</span> Learn skills and exercises to strengthen your emotional health and cope with distress.
+                </div>
+                
+                <div class="mind-notes-card">
+                    <span class="mind-notes-card-number">Finding Support</span> Get immediate help, understand crisis situations, and connect with a network of professionals and peers.
+                </div>
+            </div>
+        </section>
+
+        <section id="blogs" class="blogs">
+            <h2 class="section-title">Our Latest Insights</h2>
+            <div class="blogs-grid">
+                <div class="blog-card">
+                    <img src="/assets/image1.jpg" alt="Mindfulness Blog">
+                    <div class="blog-content">
+                        <h3>5 Simple Mindfulness Techniques for Students</h3>
+                        <p>Discover easy-to-practice mindfulness exercises that can help reduce stress and improve focus during your academic journey. Just a few minutes a day can make a big difference.</p>
+                        <a href="https://www.mayoclinic.org/healthy-lifestyle/consumer-health/in-depth/mindfulness-exercises/art-20046356" class="read-more">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="/assets/image2.jpg" alt="Sleep Tips Blog">
+                    <div class="blog-content">
+                        <h3>The Connection Between Sleep and Mental Health</h3>
+                        <p>Learn how prioritizing a good night's sleep can significantly impact your mental and emotional well-being. Get actionable tips to improve your sleep hygiene starting tonight.</p>
+                        <a href="https://www.providenceready.org/resources/blog/2025/june/balancing-school-work-and-life-strategies-for-st/" class="read-more">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="/assets/image3.jpg" alt="Academic Stress Blog">
+                    <div class="blog-content">
+                        <h3>Coping with Academic Pressure in College</h3>
+                        <p>Academic life can be overwhelming. This blog post offers practical strategies to manage stress, set realistic goals, and maintain a healthy balance between your studies and personal life.</p>
+                        <a href="https://www.providenceready.org/resources/blog/2025/june/balancing-school-work-and-life-strategies-for-st/" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="stats" class="stats">
+            <h2 class="section-title">Statistics & Insights</h2>
+            <div class="stats-grid-layout">
+                <!-- Row 1: One Chart -->
+                
+                <!-- Row 2: Three Charts -->
+                <div class="stats-row three-charts">
+                    <img src="/assets/chart2.jpg" alt="Placeholder chart 2">
+                    <img src="/assets/chart3.jpg" alt="Placeholder chart 3">
+                    <img src="/assets/chart4.png" alt="Placeholder chart 4">
+                </div>
+                <!-- Row 3: Two Charts -->
+                
+            </div>
         </section>
 
         <section id="features" class="features">
@@ -60,41 +828,25 @@
                     <h3>24/7 Helpline Support</h3>
                     <p>Get immediate, critical support from a trained professional. Our helpline is available around the clock for when you need it most.</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="team" class="team">
-            <h2 class="section-title">Meet Our Team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-member-img"> <img src="/assets/team-members/Gunshika.jpeg" alt="Description of the team member"></div>
-                    <h4>Gunshika Agarwal</h4>
-                   
+                <div class="feature-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Wellness Goal Tracker</h3>
+                    <p>Set and track personal wellness goals, from daily mindfulness to consistent sleep schedules, and watch your progress over time.</p>
                 </div>
-                <div class="team-member">
-                    <div class="team-member-img"> <img src="/assets/team-members/Hardik.jpeg" alt="Description of the team member"></div>
-                    <h4>Hardik Handa</h4>
-                   
+                <div class="feature-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Community Forum</h3>
+                    <p>Engage in moderated discussions with peers who understand. Share experiences and offer support in a safe and private online space.</p>
                 </div>
-                <div class="team-member">
-                    <div class="team-member-img"> <img src="/assets/team-members/Samvika.jpeg" alt="Description of the team member"></div>
-                    <h4>Samvika Singh</h4>
-                    
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Workshops & Events</h3>
+                    <p>Discover and register for live workshops and online events on topics like stress management, resilience, and academic pressure.</p>
                 </div>
-                <div class="team-member">
-                    <div class="team-member-img"> <img src="/assets/team-members/Anshu.png" alt="Description of the team member"></div>
-                    <h4>Anshu Sharma</h4>
-                    
-                </div>
-                <div class="team-member">
-                    <div class="team-member-img"> <img src="/assets/team-members/Aryan.jpeg" alt="Description of the team member"></div>
-                    <h4>Aryan Tyagi</h4>
-                   
-                </div>
-                <div class="team-member">
-                   <div class="team-member-img"> <img src="/assets/team-members/Arushi2.jpeg" alt="Description of the team member"></div>
-                    <h4>Arushi Kathait</h4>
-                    
+                <div class="feature-card">
+                    <i class="fas fa-feather-alt"></i>
+                    <h3>Daily Reflection Log</h3>
+                    <p>A simple, structured tool to record daily emotions, thoughts, and moments of gratitude, helping you build a positive mindset.</p>
                 </div>
             </div>
         </section>
@@ -113,32 +865,6 @@
                 <div class="step-item">
                     <h3>3. Engage</h3>
                     <p>Chat, call, or schedule a session in a safe, confidential space. Find resources and community support.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="for-institutions" class="for-institutions">
-            <h2 class="section-title">For College Institutions</h2>
-            <div class="institutions-content">
-                <p>MindCare provides colleges with a structured, scalable system to deliver mental health support. Our platform offers anonymized data and insights, helping institutions build a data-driven policy framework to proactively support their students' well-being. Partner with us to create a healthier, more resilient campus community.</p>
-                <a href="#" class="contact-btn">Partner with Us</a>
-            </div>
-        </section>
-
-        <section id="stats" class="stats">
-            <h2 class="section-title">The Challenge We Address</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>2x</h3>
-                    <p>Higher suicide rate for students than overall population in India.</p>
-                </div>
-                <div class="stat-item">
-                    <h3>66%</h3>
-                    <p>Of students face high stress from academic pressure.</p>
-                </div>
-                <div class="stat-item">
-                    <h3>1 in 2</h3>
-                    <p>College students experience symptoms of depression or anxiety.</p>
                 </div>
             </div>
         </section>
@@ -216,8 +942,74 @@
 
     <button id="theme-toggle" class="theme-toggle"><i class="fas fa-sun"></i></button>
 
-    <script src="script.js"></script>
-        
-   
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const sections = document.querySelectorAll('section');
+
+            function updateThemeToggleIcon(theme) {
+                const icon = themeToggle.querySelector('i');
+                if (theme === 'light-theme') {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                } else {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light-theme') {
+                body.classList.add('light-theme');
+                updateThemeToggleIcon('light-theme');
+            } else {
+                body.classList.remove('light-theme');
+                updateThemeToggleIcon('dark-theme');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-theme')) {
+                    body.classList.remove('light-theme');
+                    body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark-theme');
+                    updateThemeToggleIcon('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme');
+                    body.classList.add('light-theme');
+                    localStorage.setItem('theme', 'light-theme');
+                    updateThemeToggleIcon('light-theme');
+                }
+            });
+
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const currentActive = document.querySelector('.faq-item.active');
+                    if (currentActive && currentActive !== item) {
+                        currentActive.classList.remove('active');
+                    }
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
