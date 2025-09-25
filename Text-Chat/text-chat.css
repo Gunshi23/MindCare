@@ -1,11 +1,11 @@
 :root {
             --light-bg: #f5f7fa;
-            --light-chat-bg: #e0e8f0;
+            --light-chat-bg: white;
             --light-header-bg: #fdaaaa;
             --light-user-msg: #fdaaaa;
             --light-bot-msg: #ffffff;
             --light-text: black;
-            --light-border: #d4d8e0;
+            --light-border: white;
             --light-input-bg: #ffffff;
             --light-card-bg: #ffffff;
 
