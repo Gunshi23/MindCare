@@ -6,8 +6,26 @@
     <title>MindCare - College Mental Wellness</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
+            /* Light Theme Variables - Default */
+            --bg-color: #FFFFFF;
+            --text-color: #333333;
+            --brand-color: #FDAAAA;
+            --container-bg: white;
+            --card-bg: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --border-color: #FDAAAA;
+            --link-color: #FDAAAA;
+            --accent-bg: #F0F0F0;
+            --faq-header-bg: #FDFDFD;
+            --hero-text-color: #333333;
+            --explore-bg: #f8f8f8;
+            --primary-color: #007bff;
+            --card-bg-light: #ffffff;
+            --text-color-light: #333333;
+
             /* Dark Theme Variables */
             --bg-color-dark: #000000;
             --text-color-dark: #E0E0E0;
@@ -20,21 +38,14 @@
             --accent-bg-dark: #101010;
             --faq-header-bg-dark: #202020;
             --hero-text-color-dark: #FFFFFF;
+            --explore-bg-dark: #2c2c2c;
+            --primary-color-dark: #BB86FC;
+            --card-bg-dark: #282828;
+            --text-color-dark: #e0e0e0;
+        }
 
-            /* Light Theme Variables */
-            --bg-color-light: #FFFFFF;
-            --text-color-light: #333333;
-            --brand-color-light: #FDAAAA;
-            --container-bg-light: white;
-            --card-bg-light: #FFFFFF;
-            --shadow-color-light: rgba(0, 0, 0, 0.15);
-            --border-color-light: #FDAAAA;
-            --link-color-light: #FDAAAA;
-            --accent-bg-light: #F0F0F0;
-            --faq-header-bg-light: #FDFDFD;
-            --hero-text-color-light: #333333;
-
-            /* Active Theme Variables - Default to Dark */
+        /* Dark Theme Activation */
+        body.dark-theme {
             --bg-color: var(--bg-color-dark);
             --text-color: var(--text-color-dark);
             --brand-color: var(--brand-color-dark);
@@ -46,23 +57,12 @@
             --accent-bg: var(--accent-bg-dark);
             --faq-header-bg: var(--faq-header-bg-dark);
             --hero-text-color: var(--hero-text-color-dark);
+            --explore-bg: var(--explore-bg-dark);
+            --primary-color: var(--primary-color-dark);
+            --card-bg-light: var(--card-bg-dark);
+            --text-color-light: var(--text-color-dark);
         }
-
-        /* Light Theme Activation */
-        body.light-theme {
-            --bg-color: var(--bg-color-light);
-            --text-color: var(--text-color-light);
-            --brand-color: var(--brand-color-light);
-            --container-bg: var(--container-bg-light);
-            --card-bg: var(--card-bg-light);
-            --shadow-color: var(--shadow-color-light);
-            --border-color: var(--border-color-light);
-            --link-color: var(--link-color-light);
-            --accent-bg: var(--accent-bg-light);
-            --faq-header-bg: var(--faq-header-bg-light);
-            --hero-text-color: var(--hero-text-color-light);
-        }
-
+        
         /* General Styles */
         body {
             margin: 0;
@@ -79,7 +79,7 @@
             margin: 0 auto;
             padding: 25px;
             background-image: radial-gradient(circle at 1% 1%, var(--border-color) 1px, transparent 0%),
-                                radial-gradient(circle at 99% 99%, var(--border-color) 1px, transparent 0%);
+                            radial-gradient(circle at 99% 99%, var(--border-color) 1px, transparent 0%);
             background-size: 80px 80px;
             background-repeat: no-repeat;
             background-position: top left, bottom right;
@@ -306,7 +306,7 @@
             margin-bottom: 50px;
         }
         
-        .features, .how-it-works, .for-institutions, .stats, .testimonials, .faq, .blogs, .mind-notes-section {
+        .features, .how-it-works, .for-institutions, .stats, .testimonials, .faq, .blogs, .mind-notes-section, .explore-more-section {
             padding: 60px 0;
             background-color: var(--container-bg);
             border-radius: 15px;
@@ -317,7 +317,7 @@
             transition: opacity 1s ease, transform 1s ease;
         }
 
-        .features.fade-in, .how-it-works.fade-in, .for-institutions.fade-in, .stats.fade-in, .testimonials.fade-in, .faq.fade-in, .blogs.fade-in, .mind-notes-section.fade-in {
+        .features.fade-in, .how-it-works.fade-in, .for-institutions.fade-in, .stats.fade-in, .testimonials.fade-in, .faq.fade-in, .blogs.fade-in, .mind-notes-section.fade-in, .explore-more-section.fade-in {
             opacity: 1;
             transform: translateY(0);
         }
@@ -518,6 +518,61 @@
         .testimonial-role {
             font-size: 0.9em;
             opacity: 0.7;
+        }
+
+        .explore-more-section {
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+            background-color: var(--explore-bg);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: background-color 0.3s;
+            margin-bottom: 40px;
+            opacity: 0; 
+            transform: translateY(20px); 
+        }
+        .explore-more-section.fade-in {
+             opacity: 1;
+             transform: translateY(0);
+        }
+        .explore-more-section h2 {
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        .explore-more-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .explore-card {
+            background-color: var(--card-bg-light);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+            text-decoration: none;
+            color: var(--text-color-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+        .explore-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .explore-card .material-icons {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: var(--brand-color);
+        }
+        .explore-card span {
+            font-size: 1.1em;
+            font-weight: bold;
         }
         
         /* FAQ Section */
@@ -730,7 +785,7 @@
         
             <h2 class="section-title">Your Personal Wellness Guide</h2>
             <p class="mind-notes-subtitle">Explore a collection of mini-guides and daily reflections designed to help you navigate college life. Choose the one that resonates with you today.</p>
-            
+           
                 <div class="mind-notes-card">
                     <span class="mind-notes-card-number">Understanding Yourself</span> Discover where you're at on your wellness journey with guided reflections and self-assessments.
                 </div>
@@ -783,20 +838,19 @@
             <h2 class="section-title">Statistics & Insights</h2>
             <div class="stats-grid-layout">
                 <!-- Row 1: One Chart -->
-                
+               
                 <!-- Row 2: Three Charts -->
                 <div class="stats-row three-charts">
                     <img src="/assets/chart2.jpg" alt="Placeholder chart 2">
                     <img src="/assets/chart3.jpg" alt="Placeholder chart 3">
                     <img src="/assets/chart4.png" alt="Placeholder chart 4">
                 </div>
-                <!-- Row 3: Two Charts -->
-                
+               
             </div>
         </section>
 
         <section id="features" class="features">
-            <h2 class="section-title">Our Comprehensive Features</h2>
+            <h2 class="section-title">Other Comprehensive Features</h2>
             <div class="feature-grid">
                 <div class="feature-card">
                     <i class="fas fa-clipboard-list"></i>
@@ -848,6 +902,28 @@
                     <h3>Daily Reflection Log</h3>
                     <p>A simple, structured tool to record daily emotions, thoughts, and moments of gratitude, helping you build a positive mindset.</p>
                 </div>
+            </div>
+        </section>
+        
+        <section class="explore-more-section">
+            <h2 class="section-title">Explore Our Tools</h2>
+            <div class="explore-more-grid">
+                <a href="/Game-Hub/game-hub.html" class="explore-card">
+                    <span class="material-icons">videogame_asset</span>
+                    <span>Games Hub</span>
+                </a>
+                <a href="/Crisis-Support/crisis-support.html" class="explore-card">
+                    <span class="material-icons">local_hospital</span>
+                    <span>Crisis Support</span>
+                </a>
+                <a href="/Text-Chat/text-chat.html" class="explore-card">
+                    <span class="material-icons">smart_toy</span>
+                    <span>AI Chat</span>
+                </a>
+                <a href="/Journal/journal.html" class="explore-card">
+                    <span class="material-icons">book</span>
+                    <span>Personal Journal</span>
+                </a>
             </div>
         </section>
 
@@ -940,7 +1016,7 @@
         </div>
     </footer>
 
-    <button id="theme-toggle" class="theme-toggle"><i class="fas fa-sun"></i></button>
+    <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -960,19 +1036,19 @@
             }
 
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light-theme') {
-                body.classList.add('light-theme');
-                updateThemeToggleIcon('light-theme');
-            } else {
-                body.classList.remove('light-theme');
+            if (savedTheme === 'dark-theme') {
+                body.classList.add('dark-theme');
                 updateThemeToggleIcon('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+                updateThemeToggleIcon('light-theme');
             }
 
             themeToggle.addEventListener('click', () => {
                 if (body.classList.contains('light-theme')) {
                     body.classList.remove('light-theme');
                     body.classList.add('dark-theme');
-                    localStorage.setItem('theme', 'light-theme');
+                    localStorage.setItem('theme', 'dark-theme');
                     updateThemeToggleIcon('dark-theme');
                 } else {
                     body.classList.remove('dark-theme');
