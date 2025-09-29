@@ -80,4 +80,4 @@
             document.body.classList.toggle("dark", themeToggle.checked);
         });
 
-        addMessage("Hi, I’m MindCare 🤖. How are you feeling today?", "bot");
+        addMessage("Hi, I’m Saanjh 🤖. How are you feeling today?", "bot");
